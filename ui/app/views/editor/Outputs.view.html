@@ -1,0 +1,9 @@
+<template data-controller-name="app.controllers.editor.Outputs">
+	<div class="list-wrapper">
+		{{#each this.outputs}}
+			<div class="list-item output-browser" data-id="{{this.id}}">
+				{{this.label}}
+			</div>
+		{{/each}}
+	</div>
+</template>

@@ -1,0 +1,43 @@
+<template data-controller-name='app.controllers.editor.body.DFGRegisterUnit'>
+	<div class="register-wrapper">
+		<div class="register-inner">
+			<div class="register-head">
+				<div class="register-label">{{i18n 'RECORD'}}</div>
+				<div class="register-input">
+				</div>
+				<div class="register-button">
+					<div class="btn-add-regra">
+						+ {{i18n 'ADD RULES'}}
+					</div>
+					<div class="btn-add-order-by">
+						+ {{i18n 'ORDER BY'}}
+					</div>
+					<div class="btn-add-structure-relation">
+					    + {{i18n "ADD STRUCTURE RELATION" }}
+					</div>
+				</div>
+
+
+				<div class='controladores'>
+					<div class='add-filter'><span>{{i18n 'FILTERS'}}</span> |</div> 
+					<div class='delete-record'><span>{{i18n 'DELETE RECORD'}}</span></div>
+					<span class='btn-collapse icon icon-font-Sign-and-Symbols icon-downmenu'></span>
+					<span class='btn-expand icon icon-font-Sign-and-Symbols icon-upmenu'></span>
+				</div>
+			</div>
+			<div class="register-body">
+				<div class="field-list-wrapper register-fields">
+					<div class="field-list-label">
+						<div class="draghere">{{i18n 'DROP FIELDS'}}</div>
+					</div>	
+				</div>
+				<div class="register-button">
+					<div class="btn-add-subregister">
+						{{button subRegister}}
+					</div>
+				</div>
+				<div class="register-list-wrapper"></div>
+			</div>
+		</div>
+	</div>
+</template>

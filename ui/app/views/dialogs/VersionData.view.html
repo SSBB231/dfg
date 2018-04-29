@@ -1,0 +1,34 @@
+<template data-controller-name='app.controllers.dialogs.VersionData'>
+	<div id="dfg-version-dialog">
+	{{#ifCond allVersions '==' false}}
+		<div class="envolve">
+			<div class="left">{{i18n 'TILE VALID FROM'}}</div>
+			<div id="inputValidFrom" class="inputs"></div>
+		</div>
+		<div class="envolve">
+			<div class="left">{{i18n 'TILE VALID TO'}}</div>
+			<div id="inputValidTo" class="inputs"></div>
+			<div id="inputOpen" class="inputs medium"></div>
+		</div>
+		<div class="envolve">
+			<div class="left">{{i18n 'TILE LAYOUT VERSION'}}</div>
+			<div id="inputLayoutVersion" class="inputs"></div>
+		</div>
+		<div class="envolve">
+			<div class="left">{{i18n 'TILE TIMP VERSION'}}</div>
+			<div id="inputTimpVersion" class="inputs"></div>
+		</div>
+		<div class="envolve">
+			<div class="left">{{i18n 'DIALOG DESCRIPTION'}}</div>
+			<textarea id="inputDescription" class="inputs" maxlength="500"></textarea>
+		</div>
+		<!-- <div class="envolve">
+			<div id="inputOpen" class="inputs"></div>
+		</div> -->
+	{{else}}
+		{{#each dataVersions}}
+			<div  data-id="{{this.id}}" class="inputs">{{this.version}} - {{this.description}}</div>
+		{{/each}}
+	{{/ifCond}}
+	</div>
+</template>

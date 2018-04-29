@@ -1,0 +1,25 @@
+<template data-controller-name="app.controllers.editor.groups.groupContainer">
+    <div id="group-container">
+        <div class="fields-panel-container"></div>
+        <div class="elements-panel">
+            <div class="name-container">
+                <label>{{i18n 'NAME'}}</label>
+                <div class="name-input"></div>
+                 <div class="btn btn-default date-group">
+                    {{i18n "DATE GROUPING"}}
+                </div>
+            </div>
+           
+            <div class="group-content">
+                <div class="groupBy-container">
+                    <label>{{ i18n 'GROUPERS' }}</label>
+                    <div class="groupBy-droppable"></div>
+                </div>
+                <div class="totals-container">
+                    <label>{{ i18n 'GROUPED' }}</label>
+                    <div class="totals-droppable"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

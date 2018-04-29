@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Privilege:analyticPrivilege xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" schemaVersion="1.1" id="TIMP_DFG" privilegeType="ANALYTIC_PRIVILEGE">
+  <origin/>
+  <descriptions defaultDescription="TIMP_DFG"/>
+  <metadata changedAt="2017-11-13 16:14:55.665" createdAt="2017-09-12 09:43:01.33"/>
+  <securedModels allInformationModels="false">
+    <modelUri>/timp.dfg.modeling/calculationviews/CV_AN3</modelUri>
+    <modelUri>/timp.dfg.modeling/calculationviews/CV_AN4</modelUri>
+    <modelUri>/timp.dfg.modeling/calculationviews/CV_CNPJ</modelUri>
+    <modelUri>/timp.dfg.modeling/calculationviews/CV_GL_ACCOUNT_NUMBER</modelUri>
+    <modelUri>/timp.dfg.modeling/calculationviews/CV_LEDGER</modelUri>
+    <modelUri>/timp.dfg.modeling/calculationviews/CV_PLANT</modelUri>
+    <modelUri>/timp.dfg.modeling/calculationviews/CV_REPORT_FILES</modelUri>
+    <modelUri>/timp.dfg.modeling/calculationviews/CV_SPED_VERSION</modelUri>
+  </securedModels>
+</Privilege:analyticPrivilege>

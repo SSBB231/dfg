@@ -1,0 +1,39 @@
+<template data-controller-name='app.controllers.editor.body.DFGSubview'>
+	<div class="sub-register-wrapper">
+		<div class="register-inner">
+			<div class="register-head">
+				<div class="register-label">{{i18n 'SUB RECORD'}}</div>
+				<div class="register-input">
+				</div>
+				<div class="register-button">
+					<div class="btn-def-keys">
+						+ {{i18n 'DEFINE KEYS'}}
+					</div>
+				</div>
+
+
+				<div class='controladores'>
+					<div class='add-filter'><span>{{i18n 'FILTERS'}}</span> |</div> 
+					<div class='delete-record'><span>{{i18n 'DELETE RECORD'}}</span></div>
+					<span class='btn-collapse icon icon-font-Sign-and-Symbols icon-downmenu'></span>
+					<span class='btn-expand icon icon-font-Sign-and-Symbols icon-upmenu'></span>
+				</div>
+			</div>
+			<div class="register-body">
+				<div class="field-list-wrapper">
+					<div class="field-list-label">
+						<div class="draghere">{{i18n 'DROP FIELDS'}}</div>
+					</div>
+
+	
+				</div>
+				<!-- <div class="register-button">
+					<div class="btn-add-subregister">
+						{{button subRegister}}
+					</div>
+				</div> -->
+				<div class="sub-list-wrapper"></div>
+			</div>
+		</div>
+	</div>
+</template>

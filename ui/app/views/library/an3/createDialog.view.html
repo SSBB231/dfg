@@ -1,0 +1,67 @@
+<template data-controller-name="app.controllers.library.an3.createDialog">
+    <div class="an3-dialog" id="create-file-dialog">
+        <div class="mandatory">
+            <div class="mandatory-label">
+                {{i18n 'MANDATORY FIELD'}}
+            </div>
+        </div>
+        <div class="envolve maior">
+            <div class="envolve maior">
+                <div class="left">{{i18n "COPY FROM" }}</div>
+                <div class="inputs copy-from-select"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n "TILE LAYOUT NAME" }}</div>
+                <div class="inputs name-input"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n "DESCRIPTION" }}</div>
+                <div id="textareaDescription" class="inputs">{{textarea description}}</div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n 'TILE LAYOUT TYPE'}}</div>
+                <div id="inputSelectTypeFile" class="inputs"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n "LAYOUT" }}</div>
+                <div class="inputs layout-dfg-select"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n "TILE LAYOUT VERSION" }}</div>
+                <div class="inputs version-select"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n "SETTING" }}</div>
+                <div class="inputs setting-dfg-select"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n "TILE RULE" }}</div>
+                <div class="inputs rule-select"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n "TILE LAYOUT BFB" }}</div>
+                <div class="inputs layout-bfb-select"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n "TILE LAYOUT ORIGIN" }}</div>
+                <div class="inputs origin-select"></div>
+            </div>
+            <button class="link filter-btn">
+                {{i18n 'ADD FILTER'}}
+            </button>
+            <div class="envolve maior">
+                <div class="left">{{i18n 'DIGITAL FILE'}}</div>
+                <div id="inputfile" class="inputs file"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n 'EXTERNAL FILE'}}</div>
+                <span class="btn btn-default btn-file external-file">
+                	{{i18n "UPLOAD FILE"}}
+ 					<input type="file" accept=".txt">
+                	
+				</span>
+                <label class="fileName"></label>
+            </div>
+        </div>
+    </div>
+</template>

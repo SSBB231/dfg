@@ -1,0 +1,19 @@
+<template data-controller-name="app.controllers.editor.Description">
+	<div class="main-description">
+		{{main_description}}
+	</div>
+	<div class="description">
+		{{main}}
+	</div>
+	{{#if syntax}}
+		<div class="syntax-title">
+			{{i18n 'SYNTAX'}}
+		</div>
+		<div class="syntax">
+			{{syntax}}
+		</div>
+	{{/if}}
+	<div class="last-description">
+		{{last_description}}
+	</div>
+</template>

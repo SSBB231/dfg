@@ -1,0 +1,17 @@
+<template>
+	<div class='title'>
+	<div class='header-wrapper' data-id='{{ID}}'>
+		<div class='icon-wrapper'>
+			<span class='icon icon-font-{{icon.category}} icon-{{icon.name}}'></span>	
+		</div>
+		<span class='header-title'>{{title}}</span>
+		<span class='description'>{{description}}</span>
+		<div class='amount-label'>
+			{{#if items}}
+				<span class='value OpenSans-Semibold-webfont'>{{items.accordion.length}}</span>
+				<span class='label'>{{i18n 'FIELDS'}}</span>
+			{{/if}}
+		</div>
+	</div>
+	</div>
+</template>

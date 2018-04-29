@@ -1,0 +1,49 @@
+<template data-controller-name='app.controllers.library.layoutTile'>
+	<div class="layout-tiles">
+
+	{{#each body}}
+	<div class='layout-tile-wrapper' data-id='{{this.id}}' data-structure='{{this.structureId}}'>
+		<div class='layout-tile-container'>
+			<div class='tile-header'>
+				{{#each this.header}}
+				<span class='name'>
+					{{this.text}} {{this.value}} 
+				</span>
+				{{/each}}
+				{{#each this.subHeader}}
+				<span class='user-by'>
+					{{this.text}} {{this.value}}
+				</span>
+				{{/each}}
+			</div>
+			
+			<div class='tile-content'>
+				<div class='tile-thumb-wrapper' style="background-color: {{../component.color}}">
+					<div class="tile-thumb-checkbox"></div>
+					<div class='tile-thumb'>
+						<span class="icon icon-font-{{../component.iconFont}} icon-{{../component.icon}}"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class='tile-footer'>
+				<!-- <div class='toggle-wrapper favorite-wrapper{{#if metadata.is.favorite}} checked{{/if}}'>
+					<div class='toggle favorite'>
+						<span class='icon icon-font-Performance icon-star'></span>
+					</div>
+				</div> -->
+				<div class='buttons-tile-footer'>
+					{{#each this.actions}}
+					<div class='button-wrapper'>
+						<button class='button btn'>
+							<span class='icon icon-font-{{this.iconFont}} icon-{{this.icon}}'></span>
+						</button>
+					</div>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+	</div>
+	{{/each}}
+	</div>
+</template>

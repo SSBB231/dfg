@@ -1,0 +1,105 @@
+<template data-controller-name='app.controllers.dialogs.NewFile'>
+    <div id='create-file-dialog'>
+        <div class="mandatory">
+            <div class="mandatory-label">{{i18n 'MANDATORY FIELD'}}</div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'COPY FROM'}}</div>
+            <div id="inputCopyFrom" class="inputs"></div>
+        </div>
+        {{#ifCond type '==' 'layout'}}
+        <div class="envolve maior hidden-div">
+            <div class="left" id="copiaVersion">{{i18n 'TILE LAYOUT VERSION'}}</div>
+            <div id="inputTimpVersion" class="inputs big-half"></div>
+        </div>
+        {{/ifCond}}
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE LAYOUT NAME'}}</div>
+            <div id="inputTextFileName" class="inputs"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'DESCRIPTION'}}</div>
+            <div id="textareaDescription" class="inputs">{{textarea description}}</div>
+        </div>
+        {{#if slType}}
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE LAYOUT TYPE'}}</div>
+            <div id="inputSelectTypeFile" class="inputs"></div>
+        </div>
+        {{#ifCond type '==' 'setting'}}
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE LAYOUT VERSION'}}</div>
+            <div id="inputTimpVersion" class="inputs big-half"></div>
+        </div>
+        {{/ifCond}} {{/if}} {{#ifCond type '==' 'an4'}}
+        <div class="envolve maior">
+            <div class="left">{{i18n 'RULE'}}</div>
+            <div id="inputSelectRule" class="inputs"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'LAYOUT 1'}}</div>
+            <div id="inputSelectLayout1" class="inputs"></div>
+        </div>
+        <div class="btn-add-filter btn-filter1" tabindex="0">{{i18n 'ADD FILTER'}}</div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'LAYOUT 2'}}</div>
+            <div id="inputSelectLayout2" class="inputs"></div>
+        </div>
+        <div class="btn-add-filter btn-filter2" tabindex="0">{{i18n 'ADD FILTER'}}</div>
+        {{/ifCond}} {{#ifCond type '==' 'layout'}}
+        <div class="envolve maior">
+            <div class="left">{{i18n 'STRUCTURE GROUP'}}</div>
+            <div id="inputStructureParent" class="inputs"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'STRUCTURE'}}</div>
+            <div id="inputStructureChild" class="inputs"></div>
+        </div>
+        {{/ifCond}} {{#ifCond type '==' 'setting'}}
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE COMPANY'}}</div>
+            <div id="inputSelectCompany" class="inputs"></div>
+            <div id="inputTextCompany" class="inputs"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE UF'}}</div>
+            <div id="inputSelectState" class="inputs"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE BRANCH'}}</div>
+            <div id="inputSelectFilial" class="inputs"></div>
+        </div>
+        {{/ifCond}} {{#if slType}}
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE TAX'}}</div>
+            <div id="inputSelectTax" class="inputs"></div>
+        </div>
+        
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE VALID FROM'}}</div>
+            <div id="inputValidFrom" class="inputs big-half"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE VALID TO'}}</div>
+            <div id="inputValidTo" class="inputs big-half"></div>
+        </div>
+        {{/if}} {{#ifCond type '==' 'layout'}}
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE LAYOUT VERSION'}}</div>
+            <div id="inputLayoutVersion" class="inputs big-half"></div>
+        </div>
+    
+        {{/ifCond}} {{#ifCond type '==' 'an4'}}
+         
+        <div class="envolve maior">
+            <div class="left">{{i18n 'FILE 1'}}</div>
+            <div id="inputfile1" class="inputs file1"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'FILE 2'}}</div>
+            <div id="inputfile2" class="inputs file2"></div>
+        </div>
+        {{/ifCond}}
+    </div>
+</template>
+

@@ -1,0 +1,85 @@
+<template data-controller-name="app.controllers.executoran3.an3Report">
+    <div>
+        <div class="header">
+            <table class="headerTable">
+                <tbody>
+                    <tr>
+                        <td class="accessory-label">{{ i18n "ACCESSORY OBLIGATION" }}</td>
+                        <td class="digital-file-type"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td> {{i18n "AUDITORY DATE"}}</td>
+                        <td class="auditory-date">
+                        </td>
+                        <td>
+                            {{i18n "HOUR"}}
+                        </td>
+                        <td class="auditory-hour">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="idlayout-label">
+                            ID {{ i18n "LAYOUT" }}
+                        </td>
+                        <td class="idlayout">
+                        </td>
+                        <td class="idsetting-label">
+                            ID {{ i18n "SETTING"}}
+                        </td>
+                        <td class="idsetting">
+                        </td>
+                        <td class="origin-label">
+                            {{ i18n "ORIGIN" }}
+                        </td>
+                        <td class="origin">
+                        </td>
+                        <td>
+                            {{ i18n "COMPANY"}}
+                        </td>
+                        <td class="company">
+                        </td>
+                        <td>
+                            {{ i18n "BRANCH"}}
+                        </td>
+                        <td class="branch"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="report-metadata">
+            <table class="metadataTable">
+                <tr>
+                    <th colspan="6">{{ i18n "AN3 RESULT" }}</th>
+                </tr>
+                <tr>
+                    <td class="metadata-labels">{{ i18n "RULE CODE" }}
+                    </td>
+                    <td class="rule-code">
+                    </td>
+                    <td>{{ i18n "BLOCK"}} </td>
+                    <td class="block"></td>
+                    <td>{{ i18n "RECORD" }} </td>
+                    <td class="record"></td>
+                </tr>
+                <tr>
+                    <td class="metadata-labels">{{i18n "RULE NAME" }}
+                    </td>
+                    <td class="rule-name">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="metadata-labels">{{i18n "FOUND RESULTS" }}
+                    </td>
+                    <td class="found-result">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="report-table">
+            <table class="reportTable">
+            </table>
+        </div>
+    </div>
+</template>

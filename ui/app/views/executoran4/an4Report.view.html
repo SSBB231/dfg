@@ -1,0 +1,156 @@
+<template data-controller-name="app.controllers.executoran4.an4Report">
+    <div>
+        <div class="header">
+            <table class="headerTable">
+                <tbody>
+                    <tr>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td> {{i18n "AUDITORY DATE"}}</td>
+                        <td class="auditory-date">
+                        </td>
+                        <td>
+                            {{i18n "HOUR"}}
+                        </td>
+                        <td class="auditory-hour">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td>
+                            {{ i18n "COMPANY"}}
+                        </td>
+                        <td class="company">
+                        </td>
+                        <td>
+                            {{ i18n "BRANCH"}}
+                        </td>
+                        <td class="branch"></td>
+                    </tr>
+                    <tr>
+                        <td class="accessory-labelReference">{{ i18n "ACCESSORY OBLIGATION" }} {{i18n "REFERENCE" }}</td>
+                        <td class="digital-file-typeReference no-border-right"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="accessory-labelComparison">{{ i18n "ACCESSORY OBLIGATION" }} {{i18n "COMPARISON" }}</td>
+                        <td class="digital-file-typeComparison"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                    </tr>
+                    <tr>
+                        <td class="idlayout-labelReference">
+                            ID {{ i18n "LAYOUT" }} {{ i18n "REFERENCE" }}
+                        </td>
+                        <td class="idlayoutReference no-border-right">
+                        </td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="idlayout-labelComparison">
+                            ID {{ i18n "LAYOUT" }} {{ i18n "COMPARISON" }}
+                        </td>
+                        <td class="idlayoutComparison">
+                        </td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                    </tr>
+                    <tr>
+                        <td class="fileName-labelReference">
+                            {{ i18n "FILE" }} {{ i18n "REFERENCE" }}
+                        </td>
+                        <td class="fileNameReference no-border-right">
+                        </td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="fileName-labelComparison">
+                            {{ i18n "FILE" }} {{ i18n "COMPARISON" }}
+                        </td>
+                        <td class="fileNameComparison">
+                        </td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                    </tr>
+                    <tr>
+                        <td class="idsetting-labelReference">
+                            ID {{ i18n "SETTING" }} {{ i18n "REFERENCE" }}
+                        </td>
+                        <td class="idsettingReference no-border-right">
+                        </td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="idsetting-labelComparison">
+                            ID {{ i18n "SETTING" }} {{ i18n "COMPARISON" }}
+                        </td>
+                        <td class="idsettingComparison">
+                        </td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                    </tr>
+                    <tr>
+                        <td class="origin-label">
+                            {{ i18n "ORIGIN" }} {{ i18n "REFERENCE" }}
+                        </td>
+                        <td class="originReference no-border-right">
+                        </td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="origin-label">
+                            {{ i18n "ORIGIN" }} {{ i18n "COMPARISON" }}
+                        </td>
+                        <td class="originComparison"> 
+                        </td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                        <td class="invisible-column"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="report-metadata">
+            <table class="metadataTable">
+                <tr>
+                    <th colspan="6">{{ i18n "AN4 RESULT" }}</th>
+                </tr>
+                <tr>
+                    <td class="metadata-labels">{{ i18n "RULE CODE" }}
+                    </td>
+                    <td class="rule-code">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="metadata-labels">{{i18n "RULE NAME" }}
+                    </td>
+                    <td class="rule-name">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="metadata-labels">{{i18n "FOUND RESULTS" }}
+                    </td>
+                    <td class="found-result">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="report-table">
+            <table class="reportTable">
+            </table>
+        </div>
+    </div>
+</template>

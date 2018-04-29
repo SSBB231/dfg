@@ -1,0 +1,47 @@
+<template data-controller-name='app.controllers.dialogs.PanelSetting'>
+    <div id='create-file-dialog'>
+        {{#ifCond typeW '==' 'setting'}}
+        <div class="mandatory">
+            <div class="mandatory-label">{{i18n 'MANDATORY FIELD'}}</div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE SETTING TYPE'}}</div>
+            <div id="inputSelectTypeFile" class="inputs"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'DESCRIPTION'}}</div>
+            <div id="textareaDescription" class="inputs">{{textarea description}}</div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'LINK'}}</div>
+            <div id="inputLink" class="inputs"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'COMPONENT'}}</div>
+            <div id="inputComponent" class="inputs"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE TAX'}}</div>
+            <div id="inputTribute" class="inputs"></div>
+        </div>
+        {{/ifCond}}
+        {{#ifCond typeW '==' 'pva'}}
+        <div class="envolve maior" style="margin-top: 0px;">
+            <div id="inputCheckGood" class="inputs"></div>
+        </div>
+        <div class="envolve maior" style="margin-top: 0px;">
+            <div id="inputCheckError" class="inputs"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'DESCRIPTION'}}</div>
+            <div id="textareaDescription" class="inputs">{{textarea description}}</div>
+        </div>
+        {{/ifCond}}
+        {{#ifCond typeW '==' 'justify'}}
+        <div class="envolve maior">
+            <div class="left">{{i18n 'JUSTIFICATION'}}</div>
+            <div id="textareaDescription" class="inputs">{{textarea description}}</div>
+        </div>
+        {{/ifCond}}
+    </div>
+</template>

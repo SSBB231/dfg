@@ -1,0 +1,52 @@
+<template data-controller-name="app.controllers.library.sped.createDialog">
+    <div class="sped-dialog" id="create-file-dialog">
+        <div class="mandatory">
+            <div class="mandatory-label">{{i18n 'MANDATORY FIELD'}}</div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n "COPY FROM" }}</div>
+            <div class="inputs copy-from-select"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n "TILE LAYOUT NAME" }}</div>
+            <div class="inputs name-input"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n "DESCRIPTION" }}</div>
+            <div id="textareaDescription" class="inputs">{{textarea description}}</div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n "LAYOUT" }}</div>
+            <div class="inputs layout-select"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n "TILE LAYOUT VERSION" }}</div>
+            <div class="inputs version-select"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n "TILE COMPANY" }}</div>
+            <div class="inputs company-select"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n "TILE UF" }}</div>
+            <div class="inputs uf-select"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n "TILE BRANCH"}}</div>
+            <div class="inputs branch-select"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n "TILE TAX"}}</div>
+            <div class="inputs tax-select"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n 'TILE VALID FROM'}}</div>
+            <div class="inputs valid-from-select"></div>
+        </div>
+        <div class="envolve maior">
+            <div class="left">{{i18n "TILE VALID TO" }}</div>
+            <div class="inputs valid-to-select">
+            </div>
+        </div>
+    </div>
+</template>

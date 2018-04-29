@@ -1,0 +1,19 @@
+<template data-controller-name="app.controllers.editor.DesignRulesDesc">
+	<div class="rules-wrapper">
+		{{#each this}}
+			<div class="rules-header transcript-header" data-id="{{id}}">
+				<div class="rules-desc-header">
+					<div class="rules-desc-text rule-name">{{name}}</div>
+				</div>
+				<div class="rules-desc-header">
+					<div class="rules-desc-text">{{description}}</div>
+				</div>
+			</div>		
+			<div class="rules-content descScreen" data-id="{{id}}">
+				<div class="rules-desc-container">
+					<textarea class="rules-desc-textarea" disabled>{{formula}}</textarea>
+				</div>
+			</div>	
+		{{/each}}
+	</div>
+</template>

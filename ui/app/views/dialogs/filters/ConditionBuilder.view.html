@@ -1,0 +1,41 @@
+<template data-controller-name='app.controllers.dialogs.filters.ConditionBuilder'>	
+	<div id="dfg-filters-dialog" class="dfg-dialog">
+		<div class="envolve">
+			<div class="big-half">
+				<div class="left">{{i18n 'BLOCK'}}</div>
+				<div id="comboBlocks" class="inputs medium"></div>
+			</div>
+			<div class="big-half">
+				<div class="left">{{i18n 'RECORD'}}</div>
+				<div id="comboRecords" class="inputs medium"></div>
+			</div>
+			
+		</div>
+        <div class = "envolve">
+            <div class="big-half">
+				<div class="left">{{i18n 'FIELD'}}</div>
+				<div id="comboColumns" class="inputs medium"></div>
+			</div>
+        </div>
+		<div class="envolve">
+			<div>
+				<div class="left">{{i18n 'STRUCTURE'}}</div>
+				<div id="comboStructure" class="inputs"></div>
+			</div>
+		</div>
+		<div class="envolve">
+			<div>
+				<div class="left">{{i18n 'GROUP'}}</div>
+				<div id="comboGroup" class="inputs"></div>
+			</div>
+		</div>
+		<div class="filter-conditions">
+
+			<ul class="list-groups">
+			</ul>
+
+			<div class="addGroup">{{button addCase}}</div>
+			
+		</div>
+	</div>
+</template>

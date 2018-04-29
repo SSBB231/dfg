@@ -1,0 +1,157 @@
+<template data-controller-name="app.controllers.library.an4.createDialog">
+    <div class="an4-dialog" id="create-file-dialog">
+        <div class="mandatory">
+            <div class="mandatory-label">
+                {{i18n 'MANDATORY FIELD'}}
+            </div>
+        </div>
+        <div class="envolve maior">
+            <div class="envolve maior">
+                <div class="left">{{i18n "COPY FROM" }}</div>
+                <div class="inputs inputs2 copy-from-select"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n "TILE LAYOUT NAME" }}</div>
+                <div class="inputs inputs2 name-input"></div>
+            </div>
+            <div class="envolve maior">
+                <div class="left">{{i18n "DESCRIPTION" }}</div>
+                <div id="textareaDescription" class="inputs inputs2">{{textarea description}}</div>
+            </div>
+            <table class="element-container">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n 'TILE LAYOUT TYPE'}} {{i18n "REFERENCE"}}</div>
+                                <div id="inputSelectTypeFileReference" class="inputs"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n 'TILE LAYOUT TYPE'}} {{i18n "COMPARISON"}}</div>
+                                <div id="inputSelectTypeFileComparison" class="inputs"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n "LAYOUT" }} {{i18n "REFERENCE"}}</div>
+                                <div class="inputs layout-dfg-selectReference"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n "LAYOUT" }} {{i18n "COMPARISON"}}</div>
+                                <div class="inputs layout-dfg-selectComparison"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n "TILE LAYOUT VERSION" }} {{i18n "REFERENCE"}}</div>
+                                <div class="inputs version-selectReference"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n "TILE LAYOUT VERSION" }} {{i18n "COMPARISON"}}</div>
+                                <div class="inputs version-selectComparison"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n "SETTING" }} {{i18n "REFERENCE"}}</div>
+                                <div class="inputs setting-dfg-selectReference"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n "SETTING" }} {{i18n "COMPARISON"}}</div>
+                                <div class="inputs setting-dfg-selectComparison"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n "TILE LAYOUT BFB" }} {{i18n "REFERENCE" }}</div>
+                                <div class="inputs layout-bfb-selectReference"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n "TILE LAYOUT BFB" }} {{i18n "COMPARISON" }}</div>
+                                <div class="inputs layout-bfb-selectComparison"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n "TILE LAYOUT ORIGIN" }} {{i18n "REFERENCE" }}</div>
+                                <div class="inputs origin-selectReference"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n "TILE LAYOUT ORIGIN" }} {{i18n "COMPARISON"}}</div>
+                                <div class="inputs origin-selectComparison"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="link filter-btnReference">
+                                {{i18n 'ADD FILTER'}} {{i18n "REFERENCE" }}
+                            </button>
+                        </td>
+                        <td>
+                            <button class="link filter-btnComparison">
+                                {{i18n 'ADD FILTER'}} {{i18n "COMPARISON" }}
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n 'DIGITAL FILE'}} {{i18n "REFERENCE" }}</div>
+                                <div id="inputfileReference" class="inputs fileReference"></div>
+                            </div>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n 'EXTERNAL FILE'}} {{i18n "REFERENCE" }}</div>
+                                <span class="btn btn-default btn-file external-fileReference">
+                                    {{i18n "UPLOAD FILE"}}
+                                    <input type="file" accept=".txt"></input>
+                                </span>
+                                <label class="fileNameReference"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n 'DIGITAL FILE'}} {{i18n "COMPARISON" }}</div>
+                                <div id="inputfileComparison" class="inputs fileComparison"></div>
+                            </div>
+                            <div class="envolve maior">
+                                <div class="left">{{i18n 'EXTERNAL FILE'}} {{i18n "COMPARISON" }}</div>
+                                <span class="btn btn-default btn-file external-fileComparison">
+                                    {{i18n "UPLOAD FILE"}}
+                                    <input type="file" accept=".txt"></input>
+                                </span>
+                                <label class="fileNameComparison"></label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="envolve maior">
+                <div class="left">{{i18n "TILE RULE" }}</div>
+                <div class="inputs rule-select"></div>
+            </div>
+        </div>
+    </div>
+</template>

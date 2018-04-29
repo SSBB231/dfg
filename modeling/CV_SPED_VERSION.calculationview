@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_SPED_VERSION" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="CV_SPED_VERSION"/>
+  <metadata changedAt="2018-04-11 14:22:19.983"/>
+  <localVariables>
+    <variable id="IP_MANDANTE_TDF" parameter="true">
+      <descriptions defaultDescription="IP_MANDANTE_TDF"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="*" length="3" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="47"/>
+  <dataSources>
+    <DataSource id="_TMF_D_VIEW_VERS" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ABAP" columnObjectName="/TMF/D_VIEW_VERS" alias="_TMF_D_VIEW_VERS"/>
+    </DataSource>
+    <DataSource id="_TMF_D_REP_VERS" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ABAP" columnObjectName="/TMF/D_REP_VERS" alias="_TMF_D_REP_VERS"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_VIEW_VERS">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_MANDANTE_TDF$$"/>
+        </viewAttribute>
+        <viewAttribute id="REPORT_ID"/>
+        <viewAttribute id="VERSION_SPED"/>
+        <viewAttribute id="VIEW_NAME"/>
+        <viewAttribute id="VIEW_REGISTER"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="ID_REPORT" expressionLanguage="COLUMN_ENGINE">
+          <formula>int(&quot;REPORT_ID&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#_TMF_D_VIEW_VERS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPORT_ID" source="REPORT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERSION_SPED" source="VERSION_SPED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIEW_NAME" source="VIEW_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIEW_REGISTER" source="VIEW_REGISTER"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_REP_VERS">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$IP_MANDANTE_TDF$$"/>
+        </viewAttribute>
+        <viewAttribute id="REPORT_ID"/>
+        <viewAttribute id="VERSION"/>
+        <viewAttribute id="VALID_FROM"/>
+        <viewAttribute id="VALID_TO"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="ID_REPORT_INT" expressionLanguage="COLUMN_ENGINE">
+          <formula>int(&quot;REPORT_ID&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#_TMF_D_REP_VERS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPORT_ID" source="REPORT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERSION" source="VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALID_FROM" source="VALID_FROM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALID_TO" source="VALID_TO"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_REP_VERS" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="VERSION_SPED"/>
+        <viewAttribute id="RECORD"/>
+        <viewAttribute id="ID_REPORT"/>
+        <viewAttribute id="VALID_FROM"/>
+        <viewAttribute id="VALID_TO"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#P_VIEW_VERS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERSION_SPED" source="VERSION_SPED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RECORD" source="VIEW_REGISTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_REPORT" source="ID_REPORT"/>
+      </input>
+      <input node="#P_REP_VERS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALID_FROM" source="VALID_FROM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VALID_TO" source="VALID_TO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERSION_SPED" source="VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_REPORT" source="ID_REPORT_INT"/>
+      </input>
+      <joinAttribute name="MANDT"/>
+      <joinAttribute name="VERSION_SPED"/>
+      <joinAttribute name="ID_REPORT"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="J_REP_VERS">
+    <descriptions/>
+    <attributes>
+      <attribute id="MANDT" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MANDT"/>
+        <keyMapping columnObjectName="J_REP_VERS" columnName="MANDT"/>
+      </attribute>
+      <attribute id="VERSION_SPED" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VERSION_SPED"/>
+        <keyMapping columnObjectName="J_REP_VERS" columnName="VERSION_SPED"/>
+      </attribute>
+      <attribute id="RECORD" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VIEW_REGISTER"/>
+        <keyMapping columnObjectName="J_REP_VERS" columnName="RECORD"/>
+      </attribute>
+      <attribute id="ID_REPORT" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_REPORT"/>
+        <keyMapping columnObjectName="J_REP_VERS" columnName="ID_REPORT"/>
+      </attribute>
+      <attribute id="VALID_FROM" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VALID_FROM"/>
+        <keyMapping columnObjectName="J_REP_VERS" columnName="VALID_FROM"/>
+      </attribute>
+      <attribute id="VALID_TO" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VALID_TO"/>
+        <keyMapping columnObjectName="J_REP_VERS" columnName="VALID_TO"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="false" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_VIEW_VERS" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="207"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_REP_VERS" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="180" y="213"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_REP_VERS" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="147"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

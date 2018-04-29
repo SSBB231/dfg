@@ -1,0 +1,31 @@
+<template data-controller-name='app.controllers.editor.DesignRulesList'>
+	<div class='rules-wrapper'>
+		<div class='rules-header'>
+			<div class='rules-column-selector'>
+				<div class='rules-column-selector-text'>
+					{{i18n 'COLUMN SOURCE'}}
+				</div>
+				<div class='rules-column-selector-combobox'>
+				</div>
+			</div>
+			<div class='rules-header-text'>
+				<span>{{i18n 'SELECT RULE'}}</span>
+			</div>
+			<div class='rules-header-search'>
+			</div>
+			<div class='rules-radio-selector'>
+				<div class='radio-selector'><input id='rb2' value='rb2' name='rbg1' class='radiobutton' type='radio'><label for='rb2'><span></span>{{i18n 'REGULATIONS'}}</label></div>
+				<div class='radio-selector'><input id='rb1' value='rb1' name='rbg1' checked='checked' class='radiobutton' type='radio'><label for='rb1'><span></span>{{i18n 'RULES'}}</label></div>
+			</div>
+		</div>
+		<div class='rules-content rule-content-list rules-list-container'>
+			<!-- <ul class='rules-list-container'>
+				<li class='rules-list-item-none'>
+					<div class='rules-list-item-none-text'> {{i18n 'NO RULES'}} </div>
+				</li>
+			</ul> -->
+		</div>		
+		<!-- <div class='rules-footer'>
+		</div> -->		
+	</div>
+</template>

@@ -1,0 +1,21 @@
+<template>
+	<div class='field-wrapper visible' data-hanaName='{{hanaName}}' data-isMeasure='{{isMeasure}}' data-type="{{type}}" data-ID='{{ID}}' data-idStructure='{{idStructure}}'>
+		<div class="label-wrapper">
+			<div class="label-container">
+				{{#ifCond simpleType '==' 'STRING'}}
+					<span class="icon icon-font-Sign-and-Symbols icon-string"></span>
+				{{/ifCond}}
+				{{#ifCond simpleType '==' 'NUMBER'}}
+					<span class="icon icon-font-Sign-and-Symbols icon-number"></span>
+				{{/ifCond}}
+				{{#ifCond simpleType '==' 'DATE'}}
+					<span class="icon icon-font-Time-and-Date icon-calendar"></span>
+				{{/ifCond}}
+				{{#ifCond simpleType '==' 'SPECIAL'}}
+					<span class="icon icon-font-{{iconFont}} icon-{{icon}}"></span>
+				{{/ifCond}}
+				<span class='field-label'>{{label}}</span>
+			</div>
+		</div>
+	</div>
+</template>

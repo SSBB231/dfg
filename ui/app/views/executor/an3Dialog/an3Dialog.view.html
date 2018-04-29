@@ -1,0 +1,33 @@
+<template data-controller-name="app.controllers.executor.an3Dialog.an3Dialog">
+    <div class="an3-dialog-wrapper">
+        <table class="an3-dialog-table">
+            <tbody>
+                <tr>
+                    <td class="label-wrapper">
+                        {{i18n "NAME" }}
+                    </td> 
+                    <td class="field-wrapper">
+                        <div class="name-input">
+                            
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-wrapper">{{i18n "DESCRIPTION" }}</td>
+                    <td class="field-wrapper">
+                        <div class="description-input">
+                            {{textarea description}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-wrapper">{{i18n "RULES" }}</td>
+                    <td class="field-wrapper">
+                        <div class="rule-input">
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+       </table>
+    </div>
+</template>

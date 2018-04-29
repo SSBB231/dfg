@@ -1,0 +1,19 @@
+<template>
+ <div class='option-tooltip'>
+  {{#if this.name}}
+   <div class="option-row">
+    <div class='tooltip-name'><span>{{i18n 'NAME'}}: </span>{{this.name}}</div>    
+   </div>
+  {{/if}}
+  {{#if this.description}}
+   <div class="option-row">
+    <div class='tooltip-name'><span>{{i18n 'DESCRIPTION'}}: </span>{{this.description}}</div>
+   </div>
+  {{/if}}
+  {{#if this.structure}}
+   <div class="option-row">
+    <div class='tooltip-name'><span>{{i18n 'STRUCTURE'}}: </span>{{this.structure}}</div>
+   </div>
+  {{/if}}
+ </div> 
+</template>

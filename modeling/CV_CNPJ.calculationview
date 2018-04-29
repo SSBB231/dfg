@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_CNPJ" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="CV_CNPJ"/>
+  <metadata changedAt="2018-04-11 14:04:55.746"/>
+  <localVariables>
+    <variable id="IP_MANDANTE_TDF" parameter="true">
+      <descriptions defaultDescription="IP_MANDANTE_TDF"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="*" length="3" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="45"/>
+  <dataSources>
+    <DataSource id="_TMF_D_ESTABELEC" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAPABAP1" columnObjectName="/TMF/D_ESTABELEC" alias="_TMF_D_ESTABELEC"/>
+    </DataSource>
+    <DataSource id="_TMF_D_CNPJ_ROOT" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAPABAP1" columnObjectName="/TMF/D_CNPJ_ROOT" alias="_TMF_D_CNPJ_ROOT"/>
+    </DataSource>
+    <DataSource id="_TMF_D_QUESTION" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAPABAP1" columnObjectName="/TMF/D_QUESTION" alias="_TMF_D_QUESTION"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_ESTABELEC" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="IE"/>
+        <viewAttribute id="EMPRESA"/>
+        <viewAttribute id="ESTABELECIMENTO"/>
+        <viewAttribute id="CNPJ"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#_TMF_D_ESTABELEC">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IE" source="IE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMPRESA" source="EMPRESA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ESTABELECIMENTO" source="ESTABELECIMENTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ" source="CNPJ"/>
+      </input>
+      <filter>(&quot;MANDT&quot; = '$$IP_MANDANTE_TDF$$')</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_CNPJ_ROOT" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="CNPJ_ROOT"/>
+        <viewAttribute id="VIG_ATE"/>
+        <viewAttribute id="VIG_DE"/>
+        <viewAttribute id="EMPRESA"/>
+        <viewAttribute id="MATRIZ"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#_TMF_D_CNPJ_ROOT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ_ROOT" source="CNPJ_ROOT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIG_ATE" source="VIG_ATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIG_DE" source="VIG_DE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMPRESA" source="EMPRESA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATRIZ" source="MATRIZ"/>
+      </input>
+      <filter>(&quot;MANDT&quot; = '$$IP_MANDANTE_TDF$$')</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_ESTAB_CNPJ" joinType="inner" joinOrder="OUTSIDE_IN">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="CNPJ_ROOT"/>
+        <viewAttribute id="VIG_DE"/>
+        <viewAttribute id="VIG_ATE"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="IE"/>
+        <viewAttribute id="EMPRESA"/>
+        <viewAttribute id="ESTABELECIMENTO"/>
+        <viewAttribute id="CNPJ"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#P_ESTABELEC">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IE" source="IE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMPRESA" source="EMPRESA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ESTABELECIMENTO" source="ESTABELECIMENTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ" source="CNPJ"/>
+      </input>
+      <input node="#P_CNPJ_ROOT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ_ROOT" source="CNPJ_ROOT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIG_DE" source="VIG_DE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIG_ATE" source="VIG_ATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMPRESA" source="EMPRESA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ESTABELECIMENTO" source="MATRIZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+      </input>
+      <joinAttribute name="EMPRESA"/>
+      <joinAttribute name="ESTABELECIMENTO"/>
+      <joinAttribute name="MANDT"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_QUESTION" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="CNPJ_ROOT"/>
+        <viewAttribute id="COD_SCP"/>
+        <viewAttribute id="IND_ADM_FUN_CLU"/>
+        <viewAttribute id="IND_ALIQ_CSLL"/>
+        <viewAttribute id="IND_AREA_COM"/>
+        <viewAttribute id="IND_ATIV_EXT"/>
+        <viewAttribute id="IND_ATIV_RURAL"/>
+        <viewAttribute id="IND_CAP_INF"/>
+        <viewAttribute id="IND_COM_EXP"/>
+        <viewAttribute id="IND_DOA_ELEIT"/>
+        <viewAttribute id="IND_E_COM_TI"/>
+        <viewAttribute id="IND_FIN"/>
+        <viewAttribute id="IND_INOV_TEC"/>
+        <viewAttribute id="IND_LUC_EXP"/>
+        <viewAttribute id="IND_OP_EXT"/>
+        <viewAttribute id="IND_OP_VINC"/>
+        <viewAttribute id="IND_PART_CONS"/>
+        <viewAttribute id="IND_PART_EXT"/>
+        <viewAttribute id="IND_PGTO_EXT"/>
+        <viewAttribute id="IND_PGTO_REM"/>
+        <viewAttribute id="IND_PJ_ENQUAD"/>
+        <viewAttribute id="IND_PJ_HAB"/>
+        <viewAttribute id="IND_POLO_AM"/>
+        <viewAttribute id="IND_QTE_SCP"/>
+        <viewAttribute id="IND_REC_EXT"/>
+        <viewAttribute id="IND_RED_ISEN"/>
+        <viewAttribute id="IND_REND_SERV"/>
+        <viewAttribute id="IND_ROY_PAG"/>
+        <viewAttribute id="IND_ROY_REC"/>
+        <viewAttribute id="IND_VEND_EXP"/>
+        <viewAttribute id="IND_ZON_EXP"/>
+        <viewAttribute id="NUM_REC"/>
+        <viewAttribute id="RETIFICADORA"/>
+        <viewAttribute id="TIP_ECF"/>
+        <viewAttribute id="VIG_ATE"/>
+        <viewAttribute id="VIG_DE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#_TMF_D_QUESTION">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ_ROOT" source="CNPJ_ROOT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COD_SCP" source="COD_SCP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ADM_FUN_CLU" source="IND_ADM_FUN_CLU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ALIQ_CSLL" source="IND_ALIQ_CSLL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_AREA_COM" source="IND_AREA_COM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ATIV_EXT" source="IND_ATIV_EXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ATIV_RURAL" source="IND_ATIV_RURAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_CAP_INF" source="IND_CAP_INF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_COM_EXP" source="IND_COM_EXP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_DOA_ELEIT" source="IND_DOA_ELEIT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_E_COM_TI" source="IND_E_COM_TI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_FIN" source="IND_FIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_INOV_TEC" source="IND_INOV_TEC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_LUC_EXP" source="IND_LUC_EXP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_OP_EXT" source="IND_OP_EXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_OP_VINC" source="IND_OP_VINC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PART_CONS" source="IND_PART_CONS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PART_EXT" source="IND_PART_EXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PGTO_EXT" source="IND_PGTO_EXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PGTO_REM" source="IND_PGTO_REM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PJ_ENQUAD" source="IND_PJ_ENQUAD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PJ_HAB" source="IND_PJ_HAB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_POLO_AM" source="IND_POLO_AM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_QTE_SCP" source="IND_QTE_SCP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_REC_EXT" source="IND_REC_EXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_RED_ISEN" source="IND_RED_ISEN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_REND_SERV" source="IND_REND_SERV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ROY_PAG" source="IND_ROY_PAG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ROY_REC" source="IND_ROY_REC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_VEND_EXP" source="IND_VEND_EXP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ZON_EXP" source="IND_ZON_EXP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NUM_REC" source="NUM_REC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RETIFICADORA" source="RETIFICADORA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TIP_ECF" source="TIP_ECF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIG_ATE" source="VIG_ATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIG_DE" source="VIG_DE"/>
+      </input>
+      <filter>(&quot;MANDT&quot; = '$$IP_MANDANTE_TDF$$')</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_ESTAB_QUESTION" dynamic="false" joinType="leftOuter" joinOrder="OUTSIDE_IN">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="IE"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="CNPJ"/>
+        <viewAttribute id="CNPJ_ROOT"/>
+        <viewAttribute id="VIG_ATE_1"/>
+        <viewAttribute id="VIG_DE_1"/>
+        <viewAttribute id="COD_SCP"/>
+        <viewAttribute id="IND_ADM_FUN_CLU"/>
+        <viewAttribute id="IND_ALIQ_CSLL"/>
+        <viewAttribute id="IND_AREA_COM"/>
+        <viewAttribute id="IND_ATIV_RURAL"/>
+        <viewAttribute id="IND_ATIV_EXT"/>
+        <viewAttribute id="IND_CAP_INF"/>
+        <viewAttribute id="IND_COM_EXP"/>
+        <viewAttribute id="IND_DOA_ELEIT"/>
+        <viewAttribute id="IND_E_COM_TI"/>
+        <viewAttribute id="IND_FIN"/>
+        <viewAttribute id="IND_INOV_TEC"/>
+        <viewAttribute id="IND_LUC_EXP"/>
+        <viewAttribute id="IND_OP_EXT"/>
+        <viewAttribute id="IND_OP_VINC"/>
+        <viewAttribute id="IND_PART_CONS"/>
+        <viewAttribute id="IND_PART_EXT"/>
+        <viewAttribute id="IND_PGTO_EXT"/>
+        <viewAttribute id="IND_PGTO_REM"/>
+        <viewAttribute id="IND_PJ_ENQUAD"/>
+        <viewAttribute id="IND_PJ_HAB"/>
+        <viewAttribute id="IND_POLO_AM"/>
+        <viewAttribute id="IND_QTE_SCP"/>
+        <viewAttribute id="IND_REC_EXT"/>
+        <viewAttribute id="IND_RED_ISEN"/>
+        <viewAttribute id="IND_REND_SERV"/>
+        <viewAttribute id="IND_ROY_PAG"/>
+        <viewAttribute id="IND_ROY_REC"/>
+        <viewAttribute id="IND_VEND_EXP"/>
+        <viewAttribute id="IND_ZON_EXP"/>
+        <viewAttribute id="NUM_REC"/>
+        <viewAttribute id="RETIFICADORA"/>
+        <viewAttribute id="TIP_ECF"/>
+        <viewAttribute id="VIG_ATE"/>
+        <viewAttribute id="VIG_DE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#J_ESTAB_CNPJ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IE" source="IE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="EMPRESA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="ESTABELECIMENTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ" source="CNPJ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ_ROOT" source="CNPJ_ROOT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIG_ATE_1" source="VIG_ATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIG_DE_1" source="VIG_DE"/>
+      </input>
+      <input node="#P_QUESTION">
+        <mapping xsi:type="Calculation:AttributeMapping" target="COD_SCP" source="COD_SCP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ADM_FUN_CLU" source="IND_ADM_FUN_CLU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ALIQ_CSLL" source="IND_ALIQ_CSLL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_AREA_COM" source="IND_AREA_COM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ATIV_RURAL" source="IND_ATIV_RURAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ATIV_EXT" source="IND_ATIV_EXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_CAP_INF" source="IND_CAP_INF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_COM_EXP" source="IND_COM_EXP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_DOA_ELEIT" source="IND_DOA_ELEIT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_E_COM_TI" source="IND_E_COM_TI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_FIN" source="IND_FIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_INOV_TEC" source="IND_INOV_TEC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_LUC_EXP" source="IND_LUC_EXP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_OP_EXT" source="IND_OP_EXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_OP_VINC" source="IND_OP_VINC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PART_CONS" source="IND_PART_CONS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PART_EXT" source="IND_PART_EXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PGTO_EXT" source="IND_PGTO_EXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PGTO_REM" source="IND_PGTO_REM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PJ_ENQUAD" source="IND_PJ_ENQUAD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_PJ_HAB" source="IND_PJ_HAB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_POLO_AM" source="IND_POLO_AM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_QTE_SCP" source="IND_QTE_SCP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_REC_EXT" source="IND_REC_EXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_RED_ISEN" source="IND_RED_ISEN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_REND_SERV" source="IND_REND_SERV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ROY_PAG" source="IND_ROY_PAG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ROY_REC" source="IND_ROY_REC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_VEND_EXP" source="IND_VEND_EXP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IND_ZON_EXP" source="IND_ZON_EXP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NUM_REC" source="NUM_REC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RETIFICADORA" source="RETIFICADORA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TIP_ECF" source="TIP_ECF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIG_ATE" source="VIG_ATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VIG_DE" source="VIG_DE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ_ROOT" source="CNPJ_ROOT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+      </input>
+      <joinAttribute name="CNPJ_ROOT"/>
+      <joinAttribute name="MANDT"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="J_ESTAB_QUESTION">
+    <descriptions/>
+    <attributes>
+      <attribute id="MANDT" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MANDT"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="MANDT"/>
+      </attribute>
+      <attribute id="UF" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="UF"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="UF"/>
+      </attribute>
+      <attribute id="IE" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IE"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IE"/>
+      </attribute>
+      <attribute id="ID_BRANCH" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ESTABELECIMENTO"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="ID_BRANCH"/>
+      </attribute>
+      <attribute id="ID_COMPANY" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EMPRESA"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="ID_COMPANY"/>
+      </attribute>
+      <attribute id="CNPJ" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CNPJ"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="CNPJ"/>
+      </attribute>
+      <attribute id="CNPJ_ROOT" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CNPJ_ROOT"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="CNPJ_ROOT"/>
+      </attribute>
+      <attribute id="VALID_TO" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VIG_ATE"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="VIG_ATE_1"/>
+      </attribute>
+      <attribute id="VALID_FROM" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VIG_DE"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="VIG_DE_1"/>
+      </attribute>
+      <attribute id="COD_SCP" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COD_SCP"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="COD_SCP"/>
+      </attribute>
+      <attribute id="IND_ADM_FUN_CLU" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_ADM_FUN_CLU"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_ADM_FUN_CLU"/>
+      </attribute>
+      <attribute id="IND_ALIQ_CSLL" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_ALIQ_CSLL"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_ALIQ_CSLL"/>
+      </attribute>
+      <attribute id="IND_AREA_COM" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_AREA_COM"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_AREA_COM"/>
+      </attribute>
+      <attribute id="IND_ATIV_RURAL" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_ATIV_RURAL"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_ATIV_RURAL"/>
+      </attribute>
+      <attribute id="IND_ATIV_EXT" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_ATIV_EXT"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_ATIV_EXT"/>
+      </attribute>
+      <attribute id="IND_CAP_INF" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_CAP_INF"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_CAP_INF"/>
+      </attribute>
+      <attribute id="IND_COM_EXP" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_COM_EXP"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_COM_EXP"/>
+      </attribute>
+      <attribute id="IND_DOA_ELEIT" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_DOA_ELEIT"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_DOA_ELEIT"/>
+      </attribute>
+      <attribute id="IND_E_COM_TI" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_E_COM_TI"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_E_COM_TI"/>
+      </attribute>
+      <attribute id="IND_FIN" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_FIN"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_FIN"/>
+      </attribute>
+      <attribute id="IND_INOV_TEC" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_INOV_TEC"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_INOV_TEC"/>
+      </attribute>
+      <attribute id="IND_LUC_EXP" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_LUC_EXP"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_LUC_EXP"/>
+      </attribute>
+      <attribute id="IND_OP_EXT" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_OP_EXT"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_OP_EXT"/>
+      </attribute>
+      <attribute id="IND_OP_VINC" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_OP_VINC"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_OP_VINC"/>
+      </attribute>
+      <attribute id="IND_PART_CONS" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_PART_CONS"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_PART_CONS"/>
+      </attribute>
+      <attribute id="IND_PART_EXT" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_PART_EXT"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_PART_EXT"/>
+      </attribute>
+      <attribute id="IND_PGTO_EXT" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_PGTO_EXT"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_PGTO_EXT"/>
+      </attribute>
+      <attribute id="IND_PGTO_REM" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_PGTO_REM"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_PGTO_REM"/>
+      </attribute>
+      <attribute id="IND_PJ_ENQUAD" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_PJ_ENQUAD"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_PJ_ENQUAD"/>
+      </attribute>
+      <attribute id="IND_PJ_HAB" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_PJ_HAB"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_PJ_HAB"/>
+      </attribute>
+      <attribute id="IND_POLO_AM" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_POLO_AM"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_POLO_AM"/>
+      </attribute>
+      <attribute id="IND_QTE_SCP" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_QTE_SCP"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_QTE_SCP"/>
+      </attribute>
+      <attribute id="IND_REC_EXT" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_REC_EXT"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_REC_EXT"/>
+      </attribute>
+      <attribute id="IND_RED_ISEN" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_RED_ISEN"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_RED_ISEN"/>
+      </attribute>
+      <attribute id="IND_REND_SERV" order="35" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_REND_SERV"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_REND_SERV"/>
+      </attribute>
+      <attribute id="IND_ROY_PAG" order="36" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_ROY_PAG"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_ROY_PAG"/>
+      </attribute>
+      <attribute id="IND_ROY_REC" order="37" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_ROY_REC"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_ROY_REC"/>
+      </attribute>
+      <attribute id="IND_VEND_EXP" order="38" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_VEND_EXP"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_VEND_EXP"/>
+      </attribute>
+      <attribute id="IND_ZON_EXP" order="39" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IND_ZON_EXP"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="IND_ZON_EXP"/>
+      </attribute>
+      <attribute id="NUM_REC" order="40" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NUM_REC"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="NUM_REC"/>
+      </attribute>
+      <attribute id="RETIFICADORA" order="41" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RETIFICADORA"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="RETIFICADORA"/>
+      </attribute>
+      <attribute id="TIP_ECF" order="42" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="TIP_ECF"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="TIP_ECF"/>
+      </attribute>
+      <attribute id="VALID_TO_QUEST" order="43" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VIG_ATE"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="VIG_ATE"/>
+      </attribute>
+      <attribute id="VALID_FROM_QUEST" order="44" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VIG_DE"/>
+        <keyMapping columnObjectName="J_ESTAB_QUESTION" columnName="VIG_DE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="false" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="176" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_ESTABELEC" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="267"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_CNPJ_ROOT" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="267"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_ESTAB_CNPJ" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="207"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_QUESTION" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="253" y="207"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_ESTAB_QUESTION" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="147"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

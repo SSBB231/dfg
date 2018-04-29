@@ -1,0 +1,136 @@
+<template data-controller-name="app.controllers.executorSPED.EFD-Contributions.executeForm">
+    <div class="executeTab-wrapper">
+        <div class="executeContributions-wrapper">
+            <div class="variant-wrapper">
+                <div class="left">
+                    {{i18n "VARIANT"}}
+                </div>
+                <div class="variant-select">
+                </div>
+            </div>
+            <table class="Contributions-form">
+                <tr>
+                    <th class="left">{{i18n "GENERAL DATA"}}</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="left">{{i18n "RECORD" }}</div>
+                        <div class="initialRecord element"></div>
+                    </td>
+                    <td>
+                        <div class="left">{{i18n "TO"}}</div>
+                        <div class="finalRecord element"></div>
+                    </td>
+                    <td>
+                        <div class="left">{{i18n "PERIOD" }}</div>
+                        <div class="period element"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="left">{{i18n "TRIBUTE OCCURRENCE"}}</div>
+                        <div class="occurrence-select element">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="left">{{i18n "CREDIT ALLOCATION"}}</div>
+                        <div class="allocation-select element"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="left">{{i18n "CONTRIBUTION TYPE"}}</div>
+                        <div class="contributionType-select element">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="left">
+                            {{i18n "ADOPTED CRITERIA REPORTS"}}
+                        </div>
+                        <div class="criteria-select element">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="left">{{i18n "SCP CODE"}}</div>
+                        <div class="scp-code element"></div>
+                    </td>
+                    <td>
+                        <div class="left">{{i18n "FINANCIAL VERSION"}}</div>
+                        <div class="financialVersion-input element"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="left">{{i18n "ORGANIZATIONAL STRUCTURE PARAMETERS" }}</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="param-rb element"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="company envolve">
+                            <div class="left">{{i18n "COMPANY" }}</div>
+                            <div class="company-select element"></div>
+                        </div>
+                        <div class="cnpj envolve">
+                            <div class="left">{{i18n "ROOT CNPJ" }}</div>
+                            <div class="cnpj-select element"></div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="left">{{i18n "BRANCH" }}</div>
+                        <div class="branch-select element"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="left">{{i18n "FISCAL FILE DATA"}}</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="left">{{i18n "BOOKKEEPING TYPE"}}</div>
+                        <div class="bookkeeping-type element">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="left">{{i18n "LAST RECEIPT NUMBER" }}</div>
+                        <div class="last-receipt element"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="left">
+                            {{i18n "REPORT VERSION SPED"}}
+                        </div>
+                        <div class="report-version element">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="generate-cb"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="left">{{i18n "OUTPUT FILE" }}</th>
+                </tr>
+                <!--tr>
+                    <td>
+                        <div class="output-rb"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="left">{{i18n "FILE NAME" }}</div>
+                        <div class="file-name element"></div>
+                    </td>
+                </tr!-->
+                <tr>
+                    <td>
+                        <div class="run-rb"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</template>

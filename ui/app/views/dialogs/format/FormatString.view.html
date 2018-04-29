@@ -1,0 +1,43 @@
+<template data-controller-name='app.controllers.dialogs.format.FormatString'>
+    <div>
+        <div class="f-string active">
+            <div class="envolve">
+                <div class="big-half">
+                    <div class="left">{{i18n 'LENGTH'}}</div>
+                    <div class="input-length inputs medium"></div>
+                </div>
+                <div class="big-half">
+                    <div class="left">{{i18n 'FILL'}}</div>
+                    <div class="input-fill inputs medium"></div>
+                </div>
+            </div>
+            <div class="envolve">
+                <div class="big-half">
+                    <div class="left">{{i18n 'ALIGN'}}</div>
+                    <div class="input-align inputs medium"></div>
+                </div>
+                <div class="big-half">
+                    <div class="input-to-upper inputs medium"></div>
+                    <div class="input-to-lower inputs medium"></div>
+                </div>
+            </div>
+            <div class="envolve replace-row" data-id="1">
+                <div class="big-half">
+                    <div class="left">{{i18n 'REPLACE'}}</div>
+                    <div class="input-search-for inputs medium"></div>
+                </div>
+                <div class="big-half">
+                    <div class="left">{{i18n 'WITH'}}</div>
+                    <div class="input-replace-with inputs medium"></div>
+                </div>
+                <div id="delete-icon" class="delete-icon">
+                    <span class="icon icon-font-Sign-and-Symbols icon-persign icon-btn btn flat trans"></span>
+                </div>
+                <div id="add-icon" class="add-icon">
+                    <span class="icon icon-font-Sign-and-Symbols icon-plussign icon-btn btn flat trans"></span>
+                </div>
+            </div>
+            <div class="btnClear link">{{i18n 'CLEAR DATA'}}</div>
+        </div>
+    </div>
+    <template>

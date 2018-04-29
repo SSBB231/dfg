@@ -1,0 +1,19 @@
+<template data-controller-name="app.controllers.library.sped.exportFiles">
+    
+    <div class="export-sped-files-dialog">
+        <button tabindex="0" id="reload-btn" class="reload-btn btn">
+        	<span class="icon icon-font-Sign-and-Symbols icon-reload"></span>
+        	<span class="text">{{i18n "REFRESH" }}</span>
+        </button>
+        <div id="search" class="library-filters export-files-filters">		
+    		<button tabindex="0" id="advanced-filters-btn" class="advanced-filters-btn btn">
+    			<span class="icon icon-font-Sign-and-Symbols icon-collapsedown"></span>
+    			<span class="text">{{ i18n 'ADVANCED FILTERS'}}</span>
+    		</button>
+    	</div>
+        <div class="advanced-filter-container"></div>
+        <div class="table-container">
+            
+        </div>
+    </div>
+</template>

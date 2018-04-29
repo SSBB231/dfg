@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_PANEL" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="CV_PANEL"/>
+  <metadata changedAt="2018-04-11 14:16:19.106"/>
+  <localVariables>
+    <variable id="LANGUAGE" parameter="true">
+      <descriptions defaultDescription="LANGUAGE"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="*" length="1" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="57"/>
+  <dataSources>
+    <DataSource id="DFG::Panel" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::Panel"/>
+    </DataSource>
+    <DataSource id="DFG::PanelComment" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::PanelComment"/>
+    </DataSource>
+    <DataSource id="DFG::PanelStatusText" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::PanelStatusText"/>
+    </DataSource>
+    <DataSource id="DFG::PanelStatus" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::PanelStatus"/>
+    </DataSource>
+    <DataSource id="DFG::Layout" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::Layout"/>
+    </DataSource>
+    <DataSource id="DFG::LayoutVersion" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::LayoutVersion"/>
+    </DataSource>
+    <DataSource id="DFG::AN3" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::AN3"/>
+    </DataSource>
+    <DataSource id="DFG::AN3Report" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::AN3Report"/>
+    </DataSource>
+    <DataSource id="DFG::ApprovePanel" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::ApprovePanel"/>
+    </DataSource>
+    <DataSource id="DFG::DigitalFile" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::DigitalFile"/>
+    </DataSource>
+    <DataSource id="DFG::DigitalFileTypeText" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::DigitalFileTypeText"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="PJ_PANEL">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="ID_REPORT"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="ID_STATUS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::Panel">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_REPORT" source="ID_REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION.DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION.DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_STATUS" source="STATUS"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="PJ_PANEL_COMMENT">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_PANEL"/>
+        <viewAttribute id="COMMENT_PANEL"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::PanelComment">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL" source="ID_PANEL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT_PANEL" source="COMMENT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="PJ_PANEL_STATUS_TXT" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_PANEL_STATUS"/>
+        <viewAttribute id="STATUS"/>
+        <viewAttribute id="LANG"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::PanelStatusText">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL_STATUS" source="ID_PANEL_STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LANG" source="LANG"/>
+      </input>
+      <filter>&quot;LANG&quot;='$$LANGUAGE$$'</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="PJ_PANEL_STATUS">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="STATUS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::PanelStatus">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="NAME"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_STATUS" cardinality="CN_1" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_PANEL_STATUS"/>
+        <viewAttribute id="LANG"/>
+        <viewAttribute id="STATUS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PJ_PANEL_STATUS_TXT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL_STATUS" source="ID_PANEL_STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LANG" source="LANG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      </input>
+      <input node="#PJ_PANEL_STATUS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL_STATUS" source="ID"/>
+      </input>
+      <joinAttribute name="ID_PANEL_STATUS"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_PANEL" cardinality="CN_1" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_PANEL"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="ID_REPORT"/>
+        <viewAttribute id="COMMENT_PANEL"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="ID_STATUS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PJ_PANEL">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_REPORT" source="ID_REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_STATUS" source="ID_STATUS"/>
+      </input>
+      <input node="#PJ_PANEL_COMMENT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT_PANEL" source="COMMENT_PANEL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL" source="ID_PANEL"/>
+      </input>
+      <joinAttribute name="ID_PANEL"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="PJ_LAYOUT">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE"/>
+        <viewAttribute id="NAME_LAYOUT"/>
+        <viewAttribute id="DESCRIPTION_LAYOUT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::Layout">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE" source="ID_DIGITAL_FILE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_LAYOUT" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_LAYOUT" source="DESCRIPTION"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="PJ_LAYOUT_VERSION">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT"/>
+        <viewAttribute id="VERSION"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::LayoutVersion">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT" source="ID_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERSION" source="VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_LAYOUT_VERSION" cardinality="CN_1" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="ID_LAYOUT"/>
+        <viewAttribute id="VERSION"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE"/>
+        <viewAttribute id="NAME_LAYOUT"/>
+        <viewAttribute id="DESCRIPTION_LAYOUT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PJ_LAYOUT_VERSION">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT" source="ID_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERSION" source="VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+      </input>
+      <input node="#PJ_LAYOUT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE" source="ID_DIGITAL_FILE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_LAYOUT" source="NAME_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_LAYOUT" source="DESCRIPTION_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT" source="ID"/>
+      </input>
+      <joinAttribute name="ID_LAYOUT"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="PJ_AN3">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_AN3"/>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="NAME_AN3"/>
+        <viewAttribute id="DESCRIPTION_AN3"/>
+        <viewAttribute id="ORIGIN"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::AN3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_AN3" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_AN3" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_LAYOUT_AN3" cardinality="C1_N" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="VERSION"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE"/>
+        <viewAttribute id="NAME_LAYOUT"/>
+        <viewAttribute id="DESCRIPTION_LAYOUT"/>
+        <viewAttribute id="ID_AN3"/>
+        <viewAttribute id="NAME_AN3"/>
+        <viewAttribute id="DESCRIPTION_AN3"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute hidden="true" id="JOIN$ID_LAYOUT_VERSION$ID_LAYOUT_VERSION"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#J_LAYOUT_VERSION">
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERSION" source="VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE" source="ID_DIGITAL_FILE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_LAYOUT" source="NAME_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_LAYOUT" source="DESCRIPTION_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_LAYOUT_VERSION$ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+      </input>
+      <input node="#PJ_AN3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_AN3" source="NAME_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_AN3" source="DESCRIPTION_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_LAYOUT_VERSION$ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+      </input>
+      <joinAttribute name="JOIN$ID_LAYOUT_VERSION$ID_LAYOUT_VERSION"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="PJ_AN3REPORT">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_AN3REPORT"/>
+        <viewAttribute id="ID_AN3"/>
+        <viewAttribute id="NAME_AN3REPORT"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="REPORT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::AN3Report">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3REPORT" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_AN3REPORT" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPORT" source="REPORT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_LAYOUT_AN3REPORT" cardinality="CN_1" joinType="leftOuter" optimizeJoinColumns="true">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="VERSION"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE"/>
+        <viewAttribute id="NAME_LAYOUT"/>
+        <viewAttribute id="DESCRIPTION_LAYOUT"/>
+        <viewAttribute id="NAME_AN3"/>
+        <viewAttribute id="DESCRIPTION_AN3"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="NAME_AN3REPORT"/>
+        <viewAttribute id="DESCRIPTION_AN3REPORT"/>
+        <viewAttribute id="REPORT"/>
+        <viewAttribute id="ID_AN3REPORT"/>
+        <viewAttribute id="ID_AN3"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PJ_AN3REPORT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_AN3REPORT" source="NAME_AN3REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_AN3REPORT" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPORT" source="REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3REPORT" source="ID_AN3REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+      </input>
+      <input node="#J_LAYOUT_AN3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERSION" source="VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE" source="ID_DIGITAL_FILE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_LAYOUT" source="NAME_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_LAYOUT" source="DESCRIPTION_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_AN3" source="NAME_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_AN3" source="DESCRIPTION_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+      </input>
+      <joinAttribute name="ID_AN3"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="PJ_APPROVEPANEL">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_APPROVE_PANEL"/>
+        <viewAttribute id="ID_PANEL"/>
+        <viewAttribute id="SUCCESS"/>
+        <viewAttribute id="COMMENT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::ApprovePanel">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_APPROVE_PANEL" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL" source="ID_PANEL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUCCESS" source="SUCCESS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT" source="COMMENT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_APPROVEPANEL" cardinality="C1_1" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_PANEL"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="ID_REPORT"/>
+        <viewAttribute id="COMMENT_PANEL"/>
+        <viewAttribute id="SUCCESS"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="ID_STATUS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#J_PANEL">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL" source="ID_PANEL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_REPORT" source="ID_REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT_PANEL" source="COMMENT_PANEL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_STATUS" source="ID_STATUS"/>
+      </input>
+      <input node="#PJ_APPROVEPANEL">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUCCESS" source="SUCCESS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL" source="ID_PANEL"/>
+      </input>
+      <joinAttribute name="ID_PANEL"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_PANEL_STATUS" cardinality="C1_N" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_PANEL"/>
+        <viewAttribute id="LANG"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="ID_REPORT"/>
+        <viewAttribute id="COMMENT_PANEL"/>
+        <viewAttribute id="SUCCESS"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="ID_STATUS"/>
+        <viewAttribute id="STATUS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#J_APPROVEPANEL">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL" source="ID_PANEL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_REPORT" source="ID_REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT_PANEL" source="COMMENT_PANEL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUCCESS" source="SUCCESS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_STATUS" source="ID_STATUS"/>
+      </input>
+      <input node="#J_STATUS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LANG" source="LANG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_STATUS" source="ID_PANEL_STATUS"/>
+      </input>
+      <joinAttribute name="ID_STATUS"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_DIGITAL_FILE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="EMPRESA"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="FILIAL"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::DigitalFile">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMPRESA" source="ID_COMPANY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILIAL" source="ID_BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE" source="ID_DIGITAL_FILE_TYPE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_DIGITAL_FILE_TYPE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="DIGITAL_FILE"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE"/>
+        <viewAttribute id="LANG">
+          <filter xsi:type="AccessControl:SingleValueFilter" including="true" value="$$LANGUAGE$$"/>
+        </viewAttribute>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::DigitalFileTypeText">
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE" source="ID_DIGITAL_FILE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LANG" source="LANG"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_FILE_TYPE" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="EMPRESA"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="FILIAL"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE"/>
+        <viewAttribute id="LANG"/>
+        <viewAttribute id="DIGITAL_FILE"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE_1"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#P_DIGITAL_FILE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMPRESA" source="EMPRESA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILIAL" source="FILIAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE_1" source="ID_DIGITAL_FILE_TYPE"/>
+      </input>
+      <input node="#P_DIGITAL_FILE_TYPE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE" source="ID_DIGITAL_FILE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LANG" source="LANG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE" source="DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE_1" source="ID_DIGITAL_FILE_TYPE"/>
+      </input>
+      <joinAttribute name="ID_DIGITAL_FILE_TYPE_1"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_LAYOUT_DIGITAL_FILE" cardinality="CN_1" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="VERSION"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="NAME_LAYOUT"/>
+        <viewAttribute id="DESCRIPTION_LAYOUT"/>
+        <viewAttribute id="NAME_AN3"/>
+        <viewAttribute id="DESCRIPTION_AN3"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="NAME_AN3REPORT"/>
+        <viewAttribute id="DESCRIPTION_AN3REPORT"/>
+        <viewAttribute id="REPORT"/>
+        <viewAttribute id="ID_AN3REPORT"/>
+        <viewAttribute id="ID_AN3"/>
+        <viewAttribute id="EMPRESA"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="FILIAL"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="DIGITAL_FILE"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE"/>
+        <viewAttribute id="LANG"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#J_LAYOUT_AN3REPORT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERSION" source="VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_LAYOUT" source="NAME_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_LAYOUT" source="DESCRIPTION_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_AN3" source="NAME_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_AN3" source="DESCRIPTION_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_AN3REPORT" source="NAME_AN3REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_AN3REPORT" source="DESCRIPTION_AN3REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPORT" source="REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3REPORT" source="ID_AN3REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE" source="ID_DIGITAL_FILE_TYPE"/>
+      </input>
+      <input node="#J_FILE_TYPE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMPRESA" source="EMPRESA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILIAL" source="FILIAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE" source="DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LANG" source="LANG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+      </input>
+      <joinAttribute name="ID_DIGITAL_FILE"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_PANEL_LAYOUT" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_PANEL"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="ID_REPORT"/>
+        <viewAttribute id="COMMENT_PANEL"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="LANG"/>
+        <viewAttribute id="ID_STATUS"/>
+        <viewAttribute id="VERSION"/>
+        <viewAttribute id="ID_DIGITAL_FILE_1"/>
+        <viewAttribute id="NAME_LAYOUT"/>
+        <viewAttribute id="DESCRIPTION_LAYOUT"/>
+        <viewAttribute id="NAME_AN3"/>
+        <viewAttribute id="DESCRIPTION_AN3"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="NAME_AN3REPORT"/>
+        <viewAttribute id="DESCRIPTION_AN3REPORT"/>
+        <viewAttribute id="REPORT"/>
+        <viewAttribute id="ID_AN3REPORT"/>
+        <viewAttribute id="ID_AN3"/>
+        <viewAttribute id="EMPRESA"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="FILIAL"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="DIGITAL_FILE"/>
+        <viewAttribute id="STATUS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#J_PANEL_STATUS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_PANEL" source="ID_PANEL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_REPORT" source="ID_REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT_PANEL" source="COMMENT_PANEL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LANG" source="LANG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_STATUS" source="ID_STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      </input>
+      <input node="#J_LAYOUT_DIGITAL_FILE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERSION" source="VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_1" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_LAYOUT" source="NAME_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_LAYOUT" source="DESCRIPTION_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_AN3" source="NAME_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_AN3" source="DESCRIPTION_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_AN3REPORT" source="NAME_AN3REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION_AN3REPORT" source="DESCRIPTION_AN3REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPORT" source="REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3REPORT" source="ID_AN3REPORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMPRESA" source="EMPRESA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILIAL" source="FILIAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE" source="DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_REPORT" source="ID_AN3REPORT"/>
+      </input>
+      <joinAttribute name="ID_REPORT"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="J_PANEL_LAYOUT">
+    <descriptions/>
+    <attributes>
+      <attribute id="ID_PANEL" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_PANEL"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="ID_PANEL"/>
+      </attribute>
+      <attribute id="ID_DIGITAL_FILE" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_DIGITAL_FILE"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="ID_DIGITAL_FILE"/>
+      </attribute>
+      <attribute id="ID_REPORT" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_REPORT"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="ID_REPORT"/>
+      </attribute>
+      <attribute id="COMMENT_PANEL" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COMMENT_PANEL"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="COMMENT_PANEL"/>
+      </attribute>
+      <attribute id="CREATION_DATE" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CREATION_DATE"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="CREATION_DATE"/>
+      </attribute>
+      <attribute id="MODIFICATION_DATE" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MODIFICATION_DATE"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="MODIFICATION_DATE"/>
+      </attribute>
+      <attribute id="LANG" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LANG"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="LANG"/>
+      </attribute>
+      <attribute id="ID_STATUS" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_STATUS"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="ID_STATUS"/>
+      </attribute>
+      <attribute id="VERSION" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VERSION"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="VERSION"/>
+      </attribute>
+      <attribute id="ID_DIGITAL_FILE_1" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_DIGITAL_FILE"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="ID_DIGITAL_FILE_1"/>
+      </attribute>
+      <attribute id="NAME_LAYOUT" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NAME_LAYOUT"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="NAME_LAYOUT"/>
+      </attribute>
+      <attribute id="DESCRIPTION_LAYOUT" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DESCRIPTION_LAYOUT"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="DESCRIPTION_LAYOUT"/>
+      </attribute>
+      <attribute id="NAME_AN3" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NAME_AN3"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="NAME_AN3"/>
+      </attribute>
+      <attribute id="DESCRIPTION_AN3" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DESCRIPTION_AN3"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="DESCRIPTION_AN3"/>
+      </attribute>
+      <attribute id="ORIGIN" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ORIGIN"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="ORIGIN"/>
+      </attribute>
+      <attribute id="NAME_AN3REPORT" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NAME_AN3REPORT"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="NAME_AN3REPORT"/>
+      </attribute>
+      <attribute id="DESCRIPTION_AN3REPORT" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DESCRIPTION_AN3REPORT"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="DESCRIPTION_AN3REPORT"/>
+      </attribute>
+      <attribute id="REPORT" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="REPORT"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="REPORT"/>
+      </attribute>
+      <attribute id="ID_AN3REPORT" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_AN3REPORT"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="ID_AN3REPORT"/>
+      </attribute>
+      <attribute id="ID_AN3" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_AN3"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="ID_AN3"/>
+      </attribute>
+      <attribute id="EMPRESA" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EMPRESA"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="EMPRESA"/>
+      </attribute>
+      <attribute id="UF" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="UF"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="UF"/>
+      </attribute>
+      <attribute id="FILIAL" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FILIAL"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="FILIAL"/>
+      </attribute>
+      <attribute id="YEAR" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="YEAR"/>
+      </attribute>
+      <attribute id="MONTH" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="MONTH"/>
+      </attribute>
+      <attribute id="SUBPERIOD" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SUBPERIOD"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="SUBPERIOD"/>
+      </attribute>
+      <attribute id="DIGITAL_FILE" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DIGITAL_FILE"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="DIGITAL_FILE"/>
+      </attribute>
+      <attribute id="STATUS" order="28" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STATUS"/>
+        <keyMapping columnObjectName="J_PANEL_LAYOUT" columnName="STATUS"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="639" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="false" modelObjectName="PJ_PANEL" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="531"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="PJ_PANEL_COMMENT" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="531"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="PJ_PANEL_STATUS_TXT" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="407" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="PJ_PANEL_STATUS" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="561" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_STATUS" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="465" y="357"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_PANEL" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="PJ_LAYOUT" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="714" y="591"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="PJ_LAYOUT_VERSION" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="560" y="591"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_LAYOUT_VERSION" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="637" y="531"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="PJ_AN3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="791" y="531"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_LAYOUT_AN3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="715" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="PJ_AN3REPORT" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="869" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_LAYOUT_AN3REPORT" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="812" y="357"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="PJ_APPROVEPANEL" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="253" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_APPROVEPANEL" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="253" y="357"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_PANEL_STATUS" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="465" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_DIGITAL_FILE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="1023" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_DIGITAL_FILE_TYPE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="1177" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="J_FILE_TYPE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="1023" y="357"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="J_LAYOUT_DIGITAL_FILE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="812" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="J_PANEL_LAYOUT" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="639" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

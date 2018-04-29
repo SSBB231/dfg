@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_REPORT_FILES" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="CV_REPORT_FILES"/>
+  <metadata changedAt="2018-04-11 14:19:56.314"/>
+  <localVariables>
+    <variable id="IP_MANDANTE_TDF" parameter="true">
+      <descriptions defaultDescription="IP_MANDANTE_TDF"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="*" length="3" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="59"/>
+  <dataSources>
+    <DataSource id="_TMF_D_REP_RUN" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAPABAP1" columnObjectName="/TMF/D_REP_RUN" alias="_TMF_D_REP_RUN"/>
+    </DataSource>
+    <DataSource id="_TMF_D_REP_FILE" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAPABAP1" columnObjectName="/TMF/D_REP_FILE" alias="_TMF_D_REP_FILE"/>
+    </DataSource>
+    <DataSource id="DFG::RunXTask" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::RunXTask"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_REP_RUN" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="REPORT_KEY"/>
+        <viewAttribute id="PERIOD_INI"/>
+        <viewAttribute id="PERIOD_FIN"/>
+        <viewAttribute id="RUN_ID"/>
+        <viewAttribute id="CNPJ_ROOT"/>
+        <viewAttribute id="CENTRAL_EFD"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="BRANCH"/>
+        <viewAttribute id="IE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#_TMF_D_REP_RUN">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPORT_KEY" source="REPORT_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERIOD_INI" source="PERIOD_INI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERIOD_FIN" source="PERIOD_FIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RUN_ID" source="RUN_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ_ROOT" source="CNPJ_ROOT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CENTRAL_EFD" source="CENTRAL_EFD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRANCH" source="BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IE" source="IE"/>
+      </input>
+      <filter>(&quot;MANDT&quot; = '$$IP_MANDANTE_TDF$$')</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_REP_FILE" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="RUN_ID"/>
+        <viewAttribute id="FILENAME"/>
+        <viewAttribute id="FILETYPE"/>
+        <viewAttribute id="FILE_ID"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="EXTENSION"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#_TMF_D_REP_FILE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RUN_ID" source="RUN_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILENAME" source="FILENAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILETYPE" source="FILETYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILE_ID" source="FILE_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EXTENSION" source="EXTENSION"/>
+      </input>
+      <filter>(&quot;MANDT&quot; = '$$IP_MANDANTE_TDF$$')</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_RUN_FILE" joinType="inner" joinOrder="OUTSIDE_IN">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="REPORT_KEY"/>
+        <viewAttribute id="PERIOD_INI"/>
+        <viewAttribute id="PERIOD_FIN"/>
+        <viewAttribute id="RUN_ID"/>
+        <viewAttribute id="CNPJ_ROOT"/>
+        <viewAttribute id="CENTRAL_EFD"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="BRANCH"/>
+        <viewAttribute id="IE"/>
+        <viewAttribute id="FILE_ID"/>
+        <viewAttribute id="FILENAME"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="EXTENSION"/>
+        <viewAttribute id="FILETYPE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#P_REP_RUN">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPORT_KEY" source="REPORT_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERIOD_INI" source="PERIOD_INI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERIOD_FIN" source="PERIOD_FIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RUN_ID" source="RUN_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ_ROOT" source="CNPJ_ROOT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CENTRAL_EFD" source="CENTRAL_EFD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRANCH" source="BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IE" source="IE"/>
+      </input>
+      <input node="#P_REP_FILE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILE_ID" source="FILE_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILENAME" source="FILENAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EXTENSION" source="EXTENSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILETYPE" source="FILETYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RUN_ID" source="RUN_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+      </input>
+      <joinAttribute name="RUN_ID"/>
+      <joinAttribute name="MANDT"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_RUNXTASK">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TASK_ID"/>
+        <viewAttribute id="RUN_ID"/>
+        <viewAttribute id="PROCESS_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::RunXTask">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TASK_ID" source="TASK_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RUN_ID" source="RUN_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PROCESS_ID" source="PROCESS_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_RUNXTASK_FILE" joinType="leftOuter" joinOrder="OUTSIDE_IN">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="FILE_ID"/>
+        <viewAttribute id="TASK_ID"/>
+        <viewAttribute id="FILENAME"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="EXTENSION"/>
+        <viewAttribute id="FILETYPE"/>
+        <viewAttribute id="PROCESS_ID"/>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="REPORT_KEY"/>
+        <viewAttribute id="PERIOD_INI"/>
+        <viewAttribute id="PERIOD_FIN"/>
+        <viewAttribute id="RUN_ID"/>
+        <viewAttribute id="CNPJ_ROOT"/>
+        <viewAttribute id="CENTRAL_EFD"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="IE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#J_RUN_FILE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILE_ID" source="FILE_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILENAME" source="FILENAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EXTENSION" source="EXTENSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FILETYPE" source="FILETYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPORT_KEY" source="REPORT_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERIOD_INI" source="PERIOD_INI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERIOD_FIN" source="PERIOD_FIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RUN_ID" source="RUN_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CNPJ_ROOT" source="CNPJ_ROOT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CENTRAL_EFD" source="CENTRAL_EFD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IE" source="IE"/>
+      </input>
+      <input node="#P_RUNXTASK">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TASK_ID" source="TASK_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PROCESS_ID" source="PROCESS_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RUN_ID" source="RUN_ID"/>
+      </input>
+      <joinAttribute name="RUN_ID"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="J_RUNXTASK_FILE">
+    <descriptions/>
+    <attributes>
+      <attribute id="FILE_ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FILE_ID"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="FILE_ID"/>
+      </attribute>
+      <attribute id="TASK_ID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="TASK_ID"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="TASK_ID"/>
+      </attribute>
+      <attribute id="FILENAME" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FILENAME"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="FILENAME"/>
+      </attribute>
+      <attribute id="DESCRIPTION" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DESCRIPTION"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="DESCRIPTION"/>
+      </attribute>
+      <attribute id="PROCESS_ID" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PROCESS_ID"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="PROCESS_ID"/>
+      </attribute>
+      <attribute id="REPORT_KEY" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="REPORT_KEY"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="REPORT_KEY"/>
+      </attribute>
+      <attribute id="PERIOD_INI" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PERIOD_INI"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="PERIOD_INI"/>
+      </attribute>
+      <attribute id="PERIOD_FIN" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PERIOD_FIN"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="PERIOD_FIN"/>
+      </attribute>
+      <attribute id="RUN_ID" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RUN_ID"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="RUN_ID"/>
+      </attribute>
+      <attribute id="CNPJ_ROOT" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CNPJ_ROOT"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="CNPJ_ROOT"/>
+      </attribute>
+      <attribute id="CENTRAL_EFD" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CENTRAL_EFD"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="CENTRAL_EFD"/>
+      </attribute>
+      <attribute id="ID_COMPANY" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BUKRS"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="ID_COMPANY"/>
+      </attribute>
+      <attribute id="ID_BRANCH" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BRANCH"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="ID_BRANCH"/>
+      </attribute>
+      <attribute id="IE" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IE"/>
+        <keyMapping columnObjectName="J_RUNXTASK_FILE" columnName="IE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="false" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="176" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_REP_RUN" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="267"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_REP_FILE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="267"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_RUN_FILE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="207"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_RUNXTASK" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="253" y="207"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_RUNXTASK_FILE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="147"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

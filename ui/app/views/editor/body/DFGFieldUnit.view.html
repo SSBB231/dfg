@@ -1,0 +1,25 @@
+<template data-controller-name='app.controllers.editor.body.DFGFieldUnit'>
+	<div tabindex=0 class='record-field-wrapper' data-hanaName='{{fieldData.hanaName}}' data-type="{{fieldData.type}}" data-id='{{fieldData.id}}' data-idStructure='{{fieldData.idStructure}}'>
+		<div class="label-wrapper">
+			<div class="label-container">
+				{{#if fieldData.icon }}
+					<span class="icon icon-font-{{fieldData.iconFont}} icon-{{fieldData.icon}}"></span>
+				{{/if}}
+				{{#ifCond fieldData.simpleType '==' 'STRING'}}
+					<span class="icon icon-font-Sign-and-Symbols icon-string"></span>
+				{{/ifCond}}
+				{{#ifCond fieldData.simpleType '==' 'NUMBER'}}
+					<span class="icon icon-font-Sign-and-Symbols icon-number"></span>
+				{{/ifCond}}
+				{{#ifCond fieldData.simpleType '==' 'DATE'}}
+					<span class="icon icon-font-Time-and-Date icon-calendar"></span>
+				{{/ifCond}}
+				{{#ifCond fieldData.isOutputField '==' true}}
+					<span class="icon icon-font-Formatting-and-Tool icon-table"></span>
+				{{/ifCond}}
+				<span class='field-label'>{{fieldData.label}}</span>
+				<span class="field-close icon icon-font-Sign-and-Symbols icon-persign">
+			</div>
+		</div>
+	</div>
+</template>

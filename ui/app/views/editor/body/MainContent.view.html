@@ -1,0 +1,21 @@
+<template data-controller-name='app.controllers.editor.body.MainContent'>
+	<div class="main-content-wrapper">
+		<div class="controladoresTop">
+			<div class="totalblocks close"><span>{{i18n 'TOTAL BLOCKS'}}<div class="num">0</div></span> <span class="icon icon-font-Sign-and-Symbols icon-down"></span> |</div> 
+			<div class="totalrecords close"><span>{{i18n 'TOTAL RECORDS'}}<div class="num">0</div></span> <span class="icon icon-font-Sign-and-Symbols icon-down"></span></div> 
+		</div>
+
+		<div id="toolbarSecund"></div>
+
+		<div class="builder-wrapper">
+			<div class="builder-head">
+				{{button adicionar}}
+				<div id="inputFind"></div>
+			</div>
+			<div class="builder-body">
+				<div id="block-list-wrapper" class="block-list-wrapper"></div>
+			</div>
+		</div>
+
+	</div>
+</template>

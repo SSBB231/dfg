@@ -1,0 +1,23 @@
+<template data-controller-name='app.controllers.editor.body.DFGBlockUnit'>	
+	<div class='block-wrapper'>
+		<div class='block-inner'>
+			<div class='block-head'>
+				<div class='block-label'>{{i18n 'BLOCK'}}</div>
+				<div class='block-input'></div>
+				<div class='controladores'>
+					<div class='add-filter'><span>{{i18n 'FILTERS'}}</span> |</div> 
+					<div class='delete-block'><span>{{i18n 'DELETE BLOCK'}}</span></div>
+					<span class='btn-collapse icon icon-font-Sign-and-Symbols icon-downmenu'></span>
+					<span class='btn-expand icon icon-font-Sign-and-Symbols icon-upmenu'></span>
+				</div>
+			</div>
+			<div class='block-body'>
+				<div class='register-list-wrapper'></div>
+			</div>
+			<div class='block-footer'>
+				<button class='btn trans btn-add-register' tabindex="0">
+					<span class='icon icon-font-Sign-and-Symbols icon-plussign'></span><span class='btn-text'>{{i18n 'ADD RECORD'}}</span></button>
+			</div>
+		</div>
+	</div>
+</template>

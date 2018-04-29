@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_PLANT" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="CV_PLANT"/>
+  <metadata changedAt="2018-04-11 14:18:21.936"/>
+  <localVariables>
+    <variable id="IP_MANDANTE" parameter="true">
+      <descriptions defaultDescription="IP_MANDANTE"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="*" length="3" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="62"/>
+  <dataSources>
+    <DataSource id="J_1BBRANCH_1" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC_TIMP" columnObjectName="J_1BBRANCH" alias="J_1BBRANCH_1"/>
+    </DataSource>
+    <DataSource id="T001W" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC_TIMP" columnObjectName="T001W"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_J_1BBBRANCH" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="BRANCH"/>
+        <viewAttribute id="STATE_INSC"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#J_1BBRANCH_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRANCH" source="BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATE_INSC" source="STATE_INSC"/>
+      </input>
+      <filter>&quot;MANDT&quot;='$$IP_MANDANTE$$'</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_T001W" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="REGIO"/>
+        <viewAttribute id="J_1BBRANCH"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#T001W">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REGIO" source="REGIO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="J_1BBRANCH" source="J_1BBRANCH"/>
+      </input>
+      <filter>&quot;MANDT&quot;= '$$IP_MANDANTE$$'</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="J_T001W_J_1BBBRANCH" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="REGIO"/>
+        <viewAttribute id="J_1BBRANCH"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="STATE_INSC"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#P_T001W">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REGIO" source="REGIO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="J_1BBRANCH" source="J_1BBRANCH"/>
+      </input>
+      <input node="#P_J_1BBBRANCH">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATE_INSC" source="STATE_INSC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="J_1BBRANCH" source="BRANCH"/>
+      </input>
+      <joinAttribute name="MANDT"/>
+      <joinAttribute name="J_1BBRANCH"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="J_T001W_J_1BBBRANCH">
+    <descriptions/>
+    <attributes>
+      <attribute id="MANDT" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MANDT"/>
+        <keyMapping columnObjectName="J_T001W_J_1BBBRANCH" columnName="MANDT"/>
+      </attribute>
+      <attribute id="PLANT_NAME" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NAME1"/>
+        <keyMapping columnObjectName="J_T001W_J_1BBBRANCH" columnName="NAME1"/>
+      </attribute>
+      <attribute id="ID_PLANT" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="J_T001W_J_1BBBRANCH" columnName="WERKS"/>
+      </attribute>
+      <attribute id="UF" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="REGIO"/>
+        <keyMapping columnObjectName="J_T001W_J_1BBBRANCH" columnName="REGIO"/>
+      </attribute>
+      <attribute id="ID_BRANCH" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="J_1BBRANCH"/>
+        <keyMapping columnObjectName="J_T001W_J_1BBBRANCH" columnName="J_1BBRANCH"/>
+      </attribute>
+      <attribute id="ID_COMPANY" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BUKRS"/>
+        <keyMapping columnObjectName="J_T001W_J_1BBBRANCH" columnName="BUKRS"/>
+      </attribute>
+      <attribute id="STATE_INSC" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STATE_INSC"/>
+        <keyMapping columnObjectName="J_T001W_J_1BBBRANCH" columnName="STATE_INSC"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="false" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_J_1BBBRANCH" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="207"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_T001W" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="207"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="false" modelObjectName="J_T001W_J_1BBBRANCH" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="147"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

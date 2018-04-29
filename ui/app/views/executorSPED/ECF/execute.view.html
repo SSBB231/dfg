@@ -1,0 +1,89 @@
+<template data-controller-name="app.controllers.executorSPED.ECF.execute">
+   <div class="ExecuteTab-wrapper"> 
+	  <div class="executeECF-wrapper">
+		 <table class="execute-ECF-form">
+		   <tr class="trMandatory">
+		   	<td class="mandatory">
+		   		<div class="mandatory-label">{{i18n "MANDATORY FIELD"}}</div>
+		   	</td>
+		   </tr>
+		   <tr>				   
+		   	 <th class="runSpedECF">Run SPED ECF </th> 				   
+		   </tr>
+		   <tr>
+		   	<td>
+		   		<div class="left">{{i18n "COMPANY CODE" }}</div>
+		   		<div class="Company-Code element"></div>
+		   	</td>
+		   	<td>
+		   		<div class="left">{{i18n "TILE PERIOD" }}</div>
+		   		<div class="period elementTo"></div>
+		   	</td>
+		  <!--	<td>
+		   		<div class="leftTo">{{i18n "TO" }}</div>
+		   		<div class="final-period element"></div>
+		   	</td> -->
+		   </tr>
+		   <tr>
+		   	<td>
+		   		<div class="left">{{i18n "ROOT CNPJ" }}</div>
+		   		<div class="rootCNPJ element"></div>
+		   	</td>
+		   	<td>
+		   		<div class="left">{{i18n "FINANCIAL VERSION" }}</div>
+		   		<div class="financial-version element"></div>
+		   	</td>
+		   </tr>
+		   <tr>
+		   	<td>
+		   		<div class="left">{{i18n "ACCOUNT G/L" }}</div>
+		   		<div class="initialAccount element"></div>
+		   	</td>
+		   	<td>
+		   		<div class="left">{{i18n "TO" }}</div>
+		   		<div class="finalAccount element"></div>
+		   	</td>
+		   </tr>
+		   <tr>
+		   	<td>
+		   		<div class="left">{{i18n "SPECIAL LEDGER" }}</div>
+		   		<div class="Special-Ledger element"></div>
+		   	</td>
+		   	<td>
+		   		<div class="left">{{i18n "ECF VERSION" }}</div>
+		   		<div class="ECFversion element"></div>
+		   	</td>
+		   </tr>
+		   <tr>
+		      <td>
+		   		<div class="left">{{i18n "RECORD" }}</div>
+		   		<div class="record elementTo"></div>
+		   	</td>
+		   	<td>
+		   		<div class="leftTo">{{i18n "TO" }}</div>
+		   		<div class="finalRecord element"></div>
+		   	</td> 
+		   </tr>
+		   <tr>
+		   	<td>
+		   		<div class="draft-Official-rb"></div>
+		   	</td>			   	   
+		   </tr>
+		   <tr>
+		   	<td>
+		   		<div class="left">{{i18n "DESCRIPTION" }}</div>
+		   		<div class="description longElement"></div>
+		   	</td>		   	   
+		   </tr>
+		</table>
+		<div class="RecordButton">
+			<button class="btn highlighted" tabindex="0">
+				<span class="icon icon-font-Media icon-forward"></span>
+				<span class="button-text">{{i18n "RUN"}}</span>
+			</button>
+		</div>
+<!--	<div class="table">	</div>
+		<div class="table2">	</div> -->
+	  </div>
+   </div>
+</template>

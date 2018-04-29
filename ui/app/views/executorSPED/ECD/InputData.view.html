@@ -1,0 +1,101 @@
+<template data-controller-name="app.controllers.executorSPED.ECD.InputData">
+	<div class="InputDataTab-wrapper">
+	   <div class="executeGeneralDataECD-wrapper">
+		   <table class="InputData-ECD-form">
+			   <tr class="trMandatory">
+				   <td class="mandatory">
+					 <div class="mandatory-label">{{i18n "MANDATORY FIELD"}}</div>
+				   </td>
+			   </tr>
+			   <tr>				   
+				   <th class="">{{i18n "COMPANY DATA" }}</th> 				   
+			   </tr>
+			   <tr>
+			   	   <td>
+			   	   	 <div class="left">{{i18n "DATE OPENING COMPANY" }}</div>
+                     <div class="CompanyOpeningDate element"></div>
+			   	   </td>
+			   	   <td>
+			   	   	 <div class="left">{{i18n "NIRE SUB BOOKKEEPING" }}</div>
+                     <div class="NIRE-SubBookkeeping element"></div>
+			   	   </td>
+			   </tr>
+			   <tr>
+			   	   <td>
+			   	   	 <div class="left">{{i18n "LAST MODIFICATION SHAREHOLD" }}</div>
+                     <div class="LastModificationSharehold element"></div>
+			   	   </td>
+			   	   <td>
+			   	   	 <div class="left">{{i18n "HASH SUB BOOKKEEPING" }}</div>
+                     <div class="Hash-SubBookkeeping element"></div>
+			   	   </td>
+			   </tr>
+			   <tr>
+				   <td>
+				   	 <div class="left">{{i18n "LARGE BUSINESS INDICATOR" }}</div>
+                     <div class="LargeBusinessIndicator smallElement"></div>
+				   </td>
+			   </tr>
+			   <tr>
+				   <th class="left">{{i18n "ACCOUNTING DATA FILE" }}</th> 
+			   </tr>
+			   <tr>
+			   	   <td>
+			   	   	 <div class="left">{{i18n "BOOK NUMBER" }}</div>
+                     <div class="Book-Number element"></div>
+			   	   </td>
+			   	   <td>
+			   	   	 <div class="left">{{i18n "FISCAL YEAR CLOSING DATE" }}</div>
+                     <div class="FiscalYearClosingDate element"></div>
+			   	   </td>
+			   </tr>
+			   <tr>
+				   <td>
+				   	 <div class="left">{{i18n "BOOK PURPOSE" }}</div>
+                     <div class="Book-Purpose element"></div>
+				   </td>
+			   </tr>
+			   <tr>
+				   <th class="left">{{i18n "ACCOUNTING STATEMENT" }}</th> 
+			   </tr>
+			   <tr>
+			   	   <td>
+			   	   	 <div class="left">{{i18n "IDENTIFICATION STATEMENT OF ACCOUNTING" }}</div>
+                     <div class="IdentificationStatementAccounting longElement"></div>
+			   	   </td>
+			   	   <td>
+			   	   	 <div class="left">{{i18n "ACCOUNTING STATEMENT HEAD" }}</div>
+                     <div class="AccountingStatementHead element"></div>
+			   	   </td>
+			   </tr>
+			   <tr>
+				   <th class="left">{{i18n "ATTACHMENTS" }}</th> 
+			   </tr>
+			   <tr>
+			   	   <td>
+			   	   	 <div class="Leia-rb"></div>
+			   	   </td>			   	   
+			   </tr>
+			   <tr>
+				   <td>
+			   	   	 <div class="left">{{i18n "FILE NAME / DIRECTORY" }}</div>
+                     <div class="FileName-Directory longElement"></div>
+			   	   </td>
+			   	   <td>
+			   	   	 <div class="left">{{i18n "FILE NAME / DIRECTORY" }}</div>
+                     <div class="NameFile-Directory longElement"></div>
+			   	   </td>
+			   </tr>
+			</table>
+			<div class="RecordButton">
+			<button class="btn highlighted" tabindex="0">
+				   <span class="icon icon-font-Finance-and-Office icon-floppydisc"></span>
+				   <span class="button-text">{{i18n "RECORD"}}</span>
+			</button>
+			</div>
+
+			<div>
+	        </div>
+		</div>
+	</div>
+</template>

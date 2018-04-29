@@ -1,0 +1,12 @@
+<template>
+	<div class="title">
+		<span class="icon icon-font-{{icon.category}} icon-{{icon.name}}"></span>
+		<span>{{title}}</span>
+		<div class="amount-label">
+			{{#if items}}
+				<div class="value OpenSans-Semibold-webfont">{{items.accordion.length}}</div>
+				<div class='label'>{{i18n 'LAYOUTS'}}</div>
+			{{/if}}
+		</div>
+	</div>
+</template>

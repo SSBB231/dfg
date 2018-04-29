@@ -1,0 +1,95 @@
+<template data-controller-name="app.controllers.executorSPED.ECD.generalData">
+
+    <div class="generalDataTab-wrapper">
+        <div class="executeGeneralDataECD-wrapper">
+          <div class="content_left">
+            <table class="generalData-ECD-form">
+              <tr></tr>
+              <tr>
+                  <td>
+                      <div class="left">
+                          {{i18n "RECORD"}}
+                      </div>
+                      <div class="initialRecord element">
+                      </div>
+                  </td>
+                  <td>
+                      <div class="left">{{i18n "TO" }}</div>
+                      <div class="finalRecord element"></div>
+                  </td>
+              </tr>
+                 <tr>
+                    <th class="left">{{i18n "ORGANIZATION STRUCTURE" }}</th>
+                 </tr>
+                 <tr>
+                     <td>
+                         <div class="params-rb"></div>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>
+                         <div class="left">{{i18n "COMPANY" }}</div>
+                         <div class="company-select element"></div>
+                     </td>
+                     <td>
+                         <div class="left">{{i18n "ROOT CNPJ" }}</div>
+                         <div class="cnpj-select element"></div>
+                     </td>
+                 </tr>
+            </table>
+          </div>
+          <div class="content_right">
+            <table class="generalData-ECD-form">
+                <tr>
+                  <td class="mandatory">
+                      <div class="mandatory-label">{{i18n "MANDATORY FIELD"}}</div>
+                  </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="left">{{i18n "PERIOD"}}</div>
+                        <div class="period element"></div>
+                    </td>
+                </tr>
+                <!--    <tr>
+                    <td>
+                        <div class="left">{{i18n "EXECUTION YEAR"}}</div>
+                        <div class="execution-year element"></div>
+                    </td>
+                  <td>
+                        <div class="left">{{i18n "EXECUTION MONTH"}}</div>
+                        <div class="execution-monthHigh element"></div>
+                    </td>
+                   </tr>
+                    <tr>
+                        <td>
+                            <div class="left">{{i18n "TO" }}</div>
+                            <div class="execution-monthLow element"> </div>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td>
+                            <div class="left">
+                                {{i18n "ACCOUNT G/L"}}
+                            </div>
+                            <div class="initialAccount element">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="left">
+                                {{i18n "TO"}}
+                            </div>
+                            <div class="finalAccount element"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="left">{{i18n "LEDGER" }}</div>
+                            <div class="ledger element"></div>
+                        </td>
+                    </tr>
+            </table>
+          </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_AN3" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="CV_AN3"/>
+  <metadata changedAt="2017-11-14 09:45:31.925"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="55"/>
+  <dataSources>
+    <DataSource id="CORE::File" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="CORE::File"/>
+    </DataSource>
+    <DataSource id="CORE::ObjectType" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="CORE::ObjectType"/>
+    </DataSource>
+    <DataSource id="DFG::AN3" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::AN3"/>
+    </DataSource>
+    <DataSource id="DFG::AN3XDigitalFile" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::AN3XDigitalFile"/>
+    </DataSource>
+    <DataSource id="DFG::DigitalFile" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::DigitalFile"/>
+    </DataSource>
+    <DataSource id="DFG::AN3XExternalFile" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::AN3XExternalFile"/>
+    </DataSource>
+    <DataSource id="DFG::AN3XBFBLayout" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::AN3XBFBLayout"/>
+    </DataSource>
+    <DataSource id="BFB::Layout" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="BFB::Layout"/>
+    </DataSource>
+    <DataSource id="CORE::USER" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="CORE::USER"/>
+    </DataSource>
+    <DataSource id="DFG::Layout" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::Layout"/>
+    </DataSource>
+    <DataSource id="DFG::LayoutVersion" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="TIMP" columnObjectName="DFG::LayoutVersion"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_FOLDER"/>
+        <viewAttribute id="ID_OBJECT"/>
+        <viewAttribute id="ID_OBJECT_TYPE"/>
+        <viewAttribute id="STATUS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CORE::File">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_FOLDER" source="ID_FOLDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_OBJECT" source="ID_OBJECT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_OBJECT_TYPE" source="ID_OBJECT_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CORE::ObjectType">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      </input>
+      <filter>&quot;NAME&quot;='DFG::AN3'</filter>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_FOLDER"/>
+        <viewAttribute id="ID_OBJECT"/>
+        <viewAttribute id="ID_OBJECT_TYPE"/>
+        <viewAttribute id="STATUS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_FOLDER" source="ID_FOLDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_OBJECT" source="ID_OBJECT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_OBJECT_TYPE" source="ID_OBJECT_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      </input>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_OBJECT_TYPE" source="ID"/>
+      </input>
+      <joinAttribute name="ID_OBJECT_TYPE"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="CREATION_ID_USER"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_ID_USER"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="DESCRIPTION"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::AN3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_ID_USER" source="CREATION.ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION.DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_ID_USER" source="MODIFICATION.ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION.DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="ID_CORE_FILE"/>
+        <viewAttribute id="ID_FOLDER"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="CREATION_ID_USER"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_ID_USER"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="STATUS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_ID_USER" source="CREATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_ID_USER" source="MODIFICATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+      </input>
+      <input node="#Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_CORE_FILE" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_FOLDER" source="ID_FOLDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID_OBJECT"/>
+      </input>
+      <joinAttribute name="ID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_AN3"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::AN3XDigitalFile">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_7">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="ID_SETTING_VERSION"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="ID_TAX"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="IS_SPED"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::DigitalFile">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_SETTING_VERSION" source="ID_SETTING_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="ID_COMPANY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="ID_BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_TAX" source="ID_TAX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IS_SPED" source="IS_SPED"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_6" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_AN3"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="ID_SETTING_VERSION"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="ID_TAX"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="IS_SPED"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+      </input>
+      <input node="#Projection_7">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_SETTING_VERSION" source="ID_SETTING_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="ID_COMPANY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="ID_BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_TAX" source="ID_TAX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IS_SPED" source="IS_SPED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID"/>
+      </input>
+      <joinAttribute name="ID_DIGITAL_FILE"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_3" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="ID_CORE_FILE"/>
+        <viewAttribute id="ID_FOLDER"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="CREATION_ID_USER"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_ID_USER"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="STATUS"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="DIGITAL_FILE_NAME"/>
+        <viewAttribute id="ID_SETTING_VERSION"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="ID_TAX"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="IS_SPED"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_CORE_FILE" source="ID_CORE_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_FOLDER" source="ID_FOLDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_ID_USER" source="CREATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_ID_USER" source="MODIFICATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      </input>
+      <input node="#Join_6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE_NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_SETTING_VERSION" source="ID_SETTING_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="ID_COMPANY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="ID_BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_TAX" source="ID_TAX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IS_SPED" source="IS_SPED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID_AN3"/>
+      </input>
+      <joinAttribute name="ID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_AN3"/>
+        <viewAttribute id="EXTERNAL_FILE_NAME"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::AN3XExternalFile">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EXTERNAL_FILE_NAME" source="EXTERNAL_FILE_NAME"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_4" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="ID_EXTERNAL_FILE"/>
+        <viewAttribute id="ID_CORE_FILE"/>
+        <viewAttribute id="ID_FOLDER"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="STATUS"/>
+        <viewAttribute id="CREATION_ID_USER"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_ID_USER"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="DIGITAL_FILE_NAME"/>
+        <viewAttribute id="EXTERNAL_FILE_NAME"/>
+        <viewAttribute id="ID_SETTING_VERSION"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="ID_TAX"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="IS_SPED"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_CORE_FILE" source="ID_CORE_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_FOLDER" source="ID_FOLDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_ID_USER" source="CREATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_ID_USER" source="MODIFICATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE_NAME" source="DIGITAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_SETTING_VERSION" source="ID_SETTING_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="ID_COMPANY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="ID_BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_TAX" source="ID_TAX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IS_SPED" source="IS_SPED"/>
+      </input>
+      <input node="#Projection_5">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_EXTERNAL_FILE" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EXTERNAL_FILE_NAME" source="EXTERNAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID_AN3"/>
+      </input>
+      <joinAttribute name="ID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_6">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_AN3"/>
+        <viewAttribute id="ID_BFB_LAYOUT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::AN3XBFBLayout">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BFB_LAYOUT" source="ID_BFB_LAYOUT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_8">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#BFB::Layout">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_7" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID_AN3"/>
+        <viewAttribute id="ID_BFB_LAYOUT"/>
+        <viewAttribute id="NAME"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_AN3" source="ID_AN3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BFB_LAYOUT" source="ID_BFB_LAYOUT"/>
+      </input>
+      <input node="#Projection_8">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BFB_LAYOUT" source="ID"/>
+      </input>
+      <joinAttribute name="ID_BFB_LAYOUT"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_5" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="ID_EXTERNAL_FILE"/>
+        <viewAttribute id="ID_CORE_FILE"/>
+        <viewAttribute id="ID_FOLDER"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="STATUS"/>
+        <viewAttribute id="CREATION_ID_USER"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_ID_USER"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="ID_BFB_LAYOUT"/>
+        <viewAttribute id="BFB_LAYOUT_NAME"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="DIGITAL_FILE_NAME"/>
+        <viewAttribute id="EXTERNAL_FILE_NAME"/>
+        <viewAttribute id="ID_SETTING_VERSION"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="ID_TAX"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="IS_SPED"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_EXTERNAL_FILE" source="ID_EXTERNAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_CORE_FILE" source="ID_CORE_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_FOLDER" source="ID_FOLDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_ID_USER" source="CREATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_ID_USER" source="MODIFICATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE_NAME" source="DIGITAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EXTERNAL_FILE_NAME" source="EXTERNAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_SETTING_VERSION" source="ID_SETTING_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="ID_COMPANY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="ID_BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_TAX" source="ID_TAX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IS_SPED" source="IS_SPED"/>
+      </input>
+      <input node="#Join_7">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BFB_LAYOUT" source="ID_BFB_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BFB_LAYOUT_NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID_AN3"/>
+      </input>
+      <joinAttribute name="ID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_9">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="LAST_NAME"/>
+        <viewAttribute id="NAME"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CORE::USER">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_8" joinType="rightOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="ID_EXTERNAL_FILE"/>
+        <viewAttribute id="ID_CORE_FILE"/>
+        <viewAttribute id="ID_FOLDER"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="STATUS"/>
+        <viewAttribute id="CREATION_ID_USER"/>
+        <viewAttribute id="CREATION_USER_NAME"/>
+        <viewAttribute id="CREATION_USER_LAST_NAME"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_ID_USER"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="ID_BFB_LAYOUT"/>
+        <viewAttribute id="BFB_LAYOUT_NAME"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="DIGITAL_FILE_NAME"/>
+        <viewAttribute id="EXTERNAL_FILE_NAME"/>
+        <viewAttribute id="ID_SETTING_VERSION"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="ID_TAX"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="IS_SPED"/>
+        <viewAttribute hidden="true" id="JOIN$ID$CREATION_ID_USER"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_9">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_USER_NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_USER_LAST_NAME" source="LAST_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID$CREATION_ID_USER" source="ID"/>
+      </input>
+      <input node="#Join_5">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_EXTERNAL_FILE" source="ID_EXTERNAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_CORE_FILE" source="ID_CORE_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_FOLDER" source="ID_FOLDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_ID_USER" source="CREATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_ID_USER" source="MODIFICATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BFB_LAYOUT" source="ID_BFB_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BFB_LAYOUT_NAME" source="BFB_LAYOUT_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE_NAME" source="DIGITAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EXTERNAL_FILE_NAME" source="EXTERNAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_SETTING_VERSION" source="ID_SETTING_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="ID_COMPANY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="ID_BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_TAX" source="ID_TAX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IS_SPED" source="IS_SPED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID$CREATION_ID_USER" source="CREATION_ID_USER"/>
+      </input>
+      <joinAttribute name="JOIN$ID$CREATION_ID_USER"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_9" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="ID_EXTERNAL_FILE"/>
+        <viewAttribute id="ID_CORE_FILE"/>
+        <viewAttribute id="ID_BFB_LAYOUT"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="BFB_LAYOUT_NAME"/>
+        <viewAttribute id="DIGITAL_FILE_NAME"/>
+        <viewAttribute id="ID_FOLDER"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="STATUS"/>
+        <viewAttribute id="CREATION_ID_USER"/>
+        <viewAttribute id="CREATION_USER_NAME"/>
+        <viewAttribute id="CREATION_USER_LAST_NAME"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_ID_USER"/>
+        <viewAttribute id="LAST_NAME"/>
+        <viewAttribute id="NAME_1"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="EXTERNAL_FILE_NAME"/>
+        <viewAttribute id="ID_SETTING_VERSION"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="ID_TAX"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="IS_SPED"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CREATION_USER" length="50" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;CREATION_USER_NAME&quot;+' '+&quot;CREATION_USER_LAST_NAME&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="MODIFICATION_USER" length="50" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;NAME_1&quot;+' '+&quot;LAST_NAME&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Join_8">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_EXTERNAL_FILE" source="ID_EXTERNAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_CORE_FILE" source="ID_CORE_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BFB_LAYOUT" source="ID_BFB_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BFB_LAYOUT_NAME" source="BFB_LAYOUT_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE_NAME" source="DIGITAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_FOLDER" source="ID_FOLDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_ID_USER" source="CREATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_USER_NAME" source="CREATION_USER_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_USER_LAST_NAME" source="CREATION_USER_LAST_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_ID_USER" source="MODIFICATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EXTERNAL_FILE_NAME" source="EXTERNAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_SETTING_VERSION" source="ID_SETTING_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="ID_COMPANY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="ID_BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_TAX" source="ID_TAX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IS_SPED" source="IS_SPED"/>
+      </input>
+      <input node="#Projection_9">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_1" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_ID_USER" source="ID"/>
+      </input>
+      <joinAttribute name="MODIFICATION_ID_USER"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_10">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::Layout">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE" source="ID_DIGITAL_FILE_TYPE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_11">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#DFG::LayoutVersion">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT" source="ID_LAYOUT"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_10" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="ID_LAYOUT"/>
+        <viewAttribute id="ID_EXTERNAL_FILE"/>
+        <viewAttribute id="ID_CORE_FILE"/>
+        <viewAttribute id="ID_BFB_LAYOUT"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="BFB_LAYOUT_NAME"/>
+        <viewAttribute id="DIGITAL_FILE_NAME"/>
+        <viewAttribute id="ID_FOLDER"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="STATUS"/>
+        <viewAttribute id="CREATION_ID_USER"/>
+        <viewAttribute id="CREATION_USER_NAME"/>
+        <viewAttribute id="CREATION_USER_LAST_NAME"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="MODIFICATION_ID_USER"/>
+        <viewAttribute id="LAST_NAME"/>
+        <viewAttribute id="NAME_1"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="EXTERNAL_FILE_NAME"/>
+        <viewAttribute id="ID_SETTING_VERSION"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="ID_TAX"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="CREATION_USER"/>
+        <viewAttribute id="MODIFICATION_USER"/>
+        <viewAttribute id="IS_SPED"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_9">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_EXTERNAL_FILE" source="ID_EXTERNAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_CORE_FILE" source="ID_CORE_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BFB_LAYOUT" source="ID_BFB_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BFB_LAYOUT_NAME" source="BFB_LAYOUT_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE_NAME" source="DIGITAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_FOLDER" source="ID_FOLDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_ID_USER" source="CREATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_USER_NAME" source="CREATION_USER_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_USER_LAST_NAME" source="CREATION_USER_LAST_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_ID_USER" source="MODIFICATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_1" source="NAME_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EXTERNAL_FILE_NAME" source="EXTERNAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_SETTING_VERSION" source="ID_SETTING_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="ID_COMPANY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="ID_BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_TAX" source="ID_TAX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_USER" source="CREATION_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_USER" source="MODIFICATION_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IS_SPED" source="IS_SPED"/>
+      </input>
+      <input node="#Projection_11">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT" source="ID_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID"/>
+      </input>
+      <joinAttribute name="ID_LAYOUT_VERSION"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_11" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="ID_LAYOUT_VERSION"/>
+        <viewAttribute id="ID_DIGITAL_FILE_TYPE"/>
+        <viewAttribute id="ID_EXTERNAL_FILE"/>
+        <viewAttribute id="ID_CORE_FILE"/>
+        <viewAttribute id="ID_BFB_LAYOUT"/>
+        <viewAttribute id="ID_DIGITAL_FILE"/>
+        <viewAttribute id="BFB_LAYOUT_NAME"/>
+        <viewAttribute id="DIGITAL_FILE_NAME"/>
+        <viewAttribute id="ID_FOLDER"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="ORIGIN"/>
+        <viewAttribute id="STATUS"/>
+        <viewAttribute id="CREATION_ID_USER"/>
+        <viewAttribute id="CREATION_DATE"/>
+        <viewAttribute id="EXTERNAL_FILE_NAME"/>
+        <viewAttribute id="ID_SETTING_VERSION"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="UF"/>
+        <viewAttribute id="ID_BRANCH"/>
+        <viewAttribute id="ID_TAX"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="SUBPERIOD"/>
+        <viewAttribute id="MODIFICATION_DATE"/>
+        <viewAttribute id="MODIFICATION_ID_USER"/>
+        <viewAttribute id="CREATION_USER_1"/>
+        <viewAttribute id="MODIFICATION_USER_NAME"/>
+        <viewAttribute id="CREATION_USER_NAME"/>
+        <viewAttribute id="CREATION_USER_LAST_NAME"/>
+        <viewAttribute id="MODIFCATION_USER_LAST_NAME"/>
+        <viewAttribute id="NAME_1"/>
+        <viewAttribute id="NAME_1_1"/>
+        <viewAttribute id="IS_SPED"/>
+        <viewAttribute hidden="true" id="JOIN$ID_LAYOUT$ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_10">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_LAYOUT_VERSION" source="ID_LAYOUT_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_EXTERNAL_FILE" source="ID_EXTERNAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_CORE_FILE" source="ID_CORE_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BFB_LAYOUT" source="ID_BFB_LAYOUT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE" source="ID_DIGITAL_FILE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BFB_LAYOUT_NAME" source="BFB_LAYOUT_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIGITAL_FILE_NAME" source="DIGITAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_FOLDER" source="ID_FOLDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORIGIN" source="ORIGIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_ID_USER" source="CREATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_DATE" source="CREATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EXTERNAL_FILE_NAME" source="EXTERNAL_FILE_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_SETTING_VERSION" source="ID_SETTING_VERSION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="ID_COMPANY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UF" source="UF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="ID_BRANCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_TAX" source="ID_TAX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBPERIOD" source="SUBPERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_DATE" source="MODIFICATION_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_ID_USER" source="MODIFICATION_ID_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_USER_1" source="CREATION_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFICATION_USER_NAME" source="MODIFICATION_USER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_USER_NAME" source="CREATION_USER_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATION_USER_LAST_NAME" source="CREATION_USER_LAST_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MODIFCATION_USER_LAST_NAME" source="LAST_NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_1" source="NAME_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_1_1" source="NAME_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IS_SPED" source="IS_SPED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_LAYOUT$ID" source="ID_LAYOUT"/>
+      </input>
+      <input node="#Projection_10">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DIGITAL_FILE_TYPE" source="ID_DIGITAL_FILE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID_LAYOUT$ID" source="ID"/>
+      </input>
+      <joinAttribute name="JOIN$ID_LAYOUT$ID"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_11">
+    <descriptions defaultDescription="CV_AN3"/>
+    <attributes>
+      <attribute id="ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID"/>
+      </attribute>
+      <attribute id="ID_LAYOUT_VERSION" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_LAYOUT_VERSION"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_LAYOUT_VERSION"/>
+      </attribute>
+      <attribute id="ID_DIGITAL_FILE_TYPE" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_DIGITAL_FILE_TYPE"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_DIGITAL_FILE_TYPE"/>
+      </attribute>
+      <attribute id="ID_EXTERNAL_FILE" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_EXTERNAL_FILE"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_EXTERNAL_FILE"/>
+      </attribute>
+      <attribute id="ID_CORE_FILE" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_CORE_FILE"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_CORE_FILE"/>
+      </attribute>
+      <attribute id="ID_BFB_LAYOUT" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_BFB_LAYOUT"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_BFB_LAYOUT"/>
+      </attribute>
+      <attribute id="ID_DIGITAL_FILE" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_DIGITAL_FILE"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_DIGITAL_FILE"/>
+      </attribute>
+      <attribute id="BFB_LAYOUT_NAME" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BFB_LAYOUT_NAME"/>
+        <keyMapping columnObjectName="Join_11" columnName="BFB_LAYOUT_NAME"/>
+      </attribute>
+      <attribute id="DIGITAL_FILE_NAME" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DIGITAL_FILE_NAME"/>
+        <keyMapping columnObjectName="Join_11" columnName="DIGITAL_FILE_NAME"/>
+      </attribute>
+      <attribute id="ID_FOLDER" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_FOLDER"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_FOLDER"/>
+      </attribute>
+      <attribute id="NAME" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NAME"/>
+        <keyMapping columnObjectName="Join_11" columnName="NAME"/>
+      </attribute>
+      <attribute id="DESCRIPTION" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DESCRIPTION"/>
+        <keyMapping columnObjectName="Join_11" columnName="DESCRIPTION"/>
+      </attribute>
+      <attribute id="ORIGIN" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ORIGIN"/>
+        <keyMapping columnObjectName="Join_11" columnName="ORIGIN"/>
+      </attribute>
+      <attribute id="STATUS" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STATUS"/>
+        <keyMapping columnObjectName="Join_11" columnName="STATUS"/>
+      </attribute>
+      <attribute id="CREATION_ID_USER" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CREATION_ID_USER"/>
+        <keyMapping columnObjectName="Join_11" columnName="CREATION_ID_USER"/>
+      </attribute>
+      <attribute id="CREATION_DATE" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CREATION_DATE"/>
+        <keyMapping columnObjectName="Join_11" columnName="CREATION_DATE"/>
+      </attribute>
+      <attribute id="MODIFICATION_DATE" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MODIFICATION_DATE"/>
+        <keyMapping columnObjectName="Join_11" columnName="MODIFICATION_DATE"/>
+      </attribute>
+      <attribute id="EXTERNAL_FILE_NAME" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EXTERNAL_FILE_NAME"/>
+        <keyMapping columnObjectName="Join_11" columnName="EXTERNAL_FILE_NAME"/>
+      </attribute>
+      <attribute id="ID_SETTING_VERSION" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_SETTING_VERSION"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_SETTING_VERSION"/>
+      </attribute>
+      <attribute id="ID_COMPANY" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_COMPANY"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_COMPANY"/>
+      </attribute>
+      <attribute id="UF" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="UF"/>
+        <keyMapping columnObjectName="Join_11" columnName="UF"/>
+      </attribute>
+      <attribute id="ID_BRANCH" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_BRANCH"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_BRANCH"/>
+      </attribute>
+      <attribute id="ID_TAX" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_TAX"/>
+        <keyMapping columnObjectName="Join_11" columnName="ID_TAX"/>
+      </attribute>
+      <attribute id="MONTH" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH"/>
+        <keyMapping columnObjectName="Join_11" columnName="MONTH"/>
+      </attribute>
+      <attribute id="YEAR" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR"/>
+        <keyMapping columnObjectName="Join_11" columnName="YEAR"/>
+      </attribute>
+      <attribute id="SUBPERIOD" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SUBPERIOD"/>
+        <keyMapping columnObjectName="Join_11" columnName="SUBPERIOD"/>
+      </attribute>
+      <attribute id="MODIFICATION_ID_USER" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MODIFICATION_ID_USER"/>
+        <keyMapping columnObjectName="Join_11" columnName="MODIFICATION_ID_USER"/>
+      </attribute>
+      <attribute id="MODIFICATION_USER_NAME" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MODIFICATION_USER_1"/>
+        <keyMapping columnObjectName="Join_11" columnName="MODIFICATION_USER_NAME"/>
+      </attribute>
+      <attribute id="CREATION_USER_NAME" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CREATION_USER_NAME"/>
+        <keyMapping columnObjectName="Join_11" columnName="CREATION_USER_NAME"/>
+      </attribute>
+      <attribute id="CREATION_USER_LAST_NAME" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CREATION_USER_LAST_NAME"/>
+        <keyMapping columnObjectName="Join_11" columnName="CREATION_USER_LAST_NAME"/>
+      </attribute>
+      <attribute id="MODIFCATION_USER_LAST_NAME" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LAST_NAME"/>
+        <keyMapping columnObjectName="Join_11" columnName="MODIFCATION_USER_LAST_NAME"/>
+      </attribute>
+      <attribute id="IS_SPED" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IS_SPED"/>
+        <keyMapping columnObjectName="Join_11" columnName="IS_SPED"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="CREATION_USER" hidden="false" order="32" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CREATION_USER"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="50">
+          <formula>&quot;CREATION_USER_NAME&quot;+' '+&quot;CREATION_USER_LAST_NAME&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="MODIFICATION_USER" hidden="false" order="33" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MODIFICATION_USER"/>
+        <keyCalculation datatype="VARCHAR" expressionLanguage="COLUMN_ENGINE" length="50">
+          <formula>&quot;MODIFICATION_USER_NAME&quot;+ ' '+&quot;MODIFCATION_USER_LAST_NAME&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="800" y="-110"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="837"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="253" y="837"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="741"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="741"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="645"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="741"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_7" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="484" y="741"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_6" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="645"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="252" y="549"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="406" y="549"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="406" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_6" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="560" y="549"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_8" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="714" y="549"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_7" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="560" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="483" y="357"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_9" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="637" y="357"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_8" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="550" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_9" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="637" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_10" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="880" y="117"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_11" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="800" y="180"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_10" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="720" y="65"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_11" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="820" y="-20"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

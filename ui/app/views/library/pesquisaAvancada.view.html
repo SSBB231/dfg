@@ -1,0 +1,26 @@
+<template data-controller-name='app.controllers.library.pesquisaAvancada'>	
+
+	<div id="inputPesquisa"></div>
+	<div class="advanced-filters-button">{{button advanced}}</div>
+	<div class="advanced-filters">
+
+		<div class="advanced-filter inputFileType"></div>
+		<div class="advanced-filter inputCompany"></div>
+		<!-- <div class="advanced-filter inputUf"></div> -->
+		<div class="advanced-filter">
+			<div class="federalRadio">{{radiobutton federal}}</div>
+			<div class="stateRadio">{{radiobutton state}}</div>
+		</div>
+		<div class="advanced-filter inputState"></div>
+		<div class="advanced-filter inputBranch"></div>
+		<div class="advanced-filter inputStructureGroup"></div>
+		<div class="advanced-filter inputStructure"></div>
+		<div class="advanced-filter inputDate"></div>
+		<div class="advanced-filter inputCreationDate"></div>
+		<div class="advanced-filter inputModifiedDate"></div>	
+		<div class="advanced-filter btnRefreshSearch filter-button first">{{button reload}}</div>
+		<div class="advanced-filter btnRsetSearch filter-button">{{button reset}}</div>
+		
+	</div>
+
+</template>

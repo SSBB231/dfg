@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CV_GL_ACCOUNT_NUMBER" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="crossClient" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="true" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="CV_GL_ACCOUNT_NUMBER"/>
+  <metadata changedAt="2018-04-11 14:08:24.624"/>
+  <localVariables>
+    <variable id="IP_MANDANTE" parameter="true">
+      <descriptions defaultDescription="IP_MANDANTE"/>
+      <variableProperties datatype="NVARCHAR" defaultValue="*" length="3" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="38"/>
+  <dataSources>
+    <DataSource id="BSEG" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="SAP_ECC" columnObjectName="BSEG"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_BSEG" filterExpressionLanguage="COLUMN_ENGINE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="ID_COMPANY"/>
+        <viewAttribute id="GL_ACCOUNT"/>
+        <viewAttribute id="ID_BRANCH"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#BSEG">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_COMPANY" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GL_ACCOUNT" source="SAKNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_BRANCH" source="BUPLA"/>
+      </input>
+      <filter>&quot;MANDT&quot;='$$IP_MANDANTE$$'</filter>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="P_BSEG">
+    <descriptions/>
+    <attributes>
+      <attribute id="MANDT" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Client"/>
+        <keyMapping columnObjectName="P_BSEG" columnName="MANDT"/>
+      </attribute>
+      <attribute id="ID_COMPANY" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company Code"/>
+        <keyMapping columnObjectName="P_BSEG" columnName="ID_COMPANY"/>
+      </attribute>
+      <attribute id="ID_BRANCH" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Business Place"/>
+        <keyMapping columnObjectName="P_BSEG" columnName="ID_BRANCH"/>
+      </attribute>
+      <attribute id="GL_ACCOUNT" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="G/L Account Number"/>
+        <keyMapping columnObjectName="P_BSEG" columnName="GL_ACCOUNT"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="false" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="false" modelObjectName="P_BSEG" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="147"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

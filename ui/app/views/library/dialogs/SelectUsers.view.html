@@ -1,0 +1,24 @@
+<template data-controller-name='app.controllers.library.dialogs.SelectUsers'>
+<div class='main-cont'>
+        <div class='text-cont'>{{i18n 'SHARE LAYOUT'}}</div>
+        <div class='top-cont'>
+                <div class='cont-users'>
+                </div>
+        </div>
+        <div id = 'rbuttons' >
+                {{radiobutton  rb_user}}
+                {{radiobutton  rb_wrkteam}}
+        </div>
+        <div id="cont-list" class="cont-list">
+                <div class='cont-users-list'>
+                </div>
+                <div class='cont-wt-list'>
+                </div>
+        </div>
+</div>
+<div class='priv-cont'>
+        <div class="form-title priv">{{i18n 'APP PRIVILEGE'}}</div>
+        <div class="priv-cont-list">
+        </div>
+</div>
+</template>

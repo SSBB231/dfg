@@ -1,0 +1,35 @@
+<template data-controller-name='app.controllers.library.accordion'>	
+	<div class="accordion">
+	    {{#if folders}}
+			{{#each folders}}
+		    <h2 class='folder'>
+		    	<div class="icon icon-font-Sign-and-Symbols icon-right"></div>
+		    	<div class="icon icon-font-File-and-Folders icon-Closedfolder"></div>
+		    	<span>{{metadata.name}}</span>
+		    	<hr/>
+		    </h2>
+		    <div class="pane">
+	    		{{#include 'app.views.library.accordion' this}}
+	    		{{/include}}
+		    </div>
+		    {{/each}}
+	    {{/if}}
+	    {{#if files}}
+    		{{#each files}}
+	    		<h2 class='file'>
+	            	<div class="icon icon-font-File-and-Folders icon-filleddocument"></div>
+	            	<span>{{metadata.name}}</span>
+	            	<hr/>
+	            </h2>
+            {{/each}}
+	    {{/if}}
+	    {{#ifCond folders 'OR' files}}
+	    {{else}}
+	    	<h2 class='file'>
+            	<div class=""></div>
+            	<span>No data</span>
+            	<hr/>
+            </h2>
+	    {{/ifCond}}
+	</div>
+</template>

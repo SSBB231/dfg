@@ -1,0 +1,25 @@
+<template data-controller-name="app.controllers.editor.groups.groupDialog">
+    <div class="group-dialog">
+        <div class="selection-section">
+            <div class="block-record">
+                <div class="block field">
+                    <label>{{ i18n 'BLOCK'}}</label>
+                    <div class="block-select"></div>
+                </div>
+                <div class="record field">
+                    <label>{{ i18n 'RECORD' }}</label>
+                    <div class="record-select"></div>
+                </div>
+            </div>
+            <div class="structure field">
+                <label> {{ i18n 'STRUCTURE' }}</label>
+                <div class="structure-select"></div>
+            </div>
+        </div>
+        <div class="groups-section">
+            <button class="createGroupBtn btn">{{ i18n 'CREATE GROUP' }}</button>
+            <div class="groups-rows-container">
+            </div>
+        </div>
+    </div>
+</template>
